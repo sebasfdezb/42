@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:wght@400;700&display=swap');
+
+body{
+	font-family: 'Red Hat Text', sans-serif;
+}
+
+.container{
+	text-align: center;
+	color: var(--color);
+	width: 100%;
+	min-height: 1000px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-image: url(https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/media/image/2018/01/monitor-4k-hdr.jpg?tf=3840x);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.container2{
+	text-align: center;
+	color: var(--color);
+	width: 100%;
+	min-height: 500px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color:black;
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+.container3{
+	text-align: center;
+	color: var(--color);
+	width: 100%;
+	min-height: 1000px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-image: url(https://images.unsplash.com/photo-1585060544812-6b45742d762f?q=80&w=2362&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);
+	background-size: cover;
+	background-position: center;
+	background-attachment: fixed;
+}
+
+h1{
+	font-weight: 700;
+	font-size: 1rem;
+	color: white;
+}
+
+.container3 h1{
+	color: black;
+}

@@ -1,0 +1,28 @@
+html{
+	height: 100%;
+}
+
+body {
+    height: 100%;
+    display: flex;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid black;
+}
+
+#rightcol{
+    width: 50%;
+    background-color: chartreuse;
+}
+
+
+#leftcol {
+    width: 50%;
+    background-color: darksalmon;
+}

@@ -1,0 +1,79 @@
+body{
+	font-family: Helvetica;
+	background-color: rgb(49, 49, 49);
+}
+
+h1{
+	text-align: center;
+	color: white;
+	border-bottom: 2px solid white;
+}
+
+.menus{
+	color: white;
+	position: relative;
+	background: #6d6e6f;
+	border: 2px solid white;
+	border-radius: 5px;
+}
+
+ul{
+	text-align: center;
+	padding: 0;
+	margin: 0;
+	list-style: none
+}
+
+
+.menus a{
+	text-decoration: none;
+	display: block;
+	color: inherit;
+	padding: 10px 20px;
+	border-bottom: 2px solid white;
+	max-width: 100%;
+	text-shadow: 1px 1px black;
+}
+
+
+.menus input[type="checkbox"]{
+	position: absolute;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	right: 0;
+	top: 0;
+	width: 48px;
+	height: 48px;
+	opacity: 0;
+	appearance: none;
+	color: white;
+}
+
+.menus nav{
+	display: none;
+}
+
+
+.test img{
+	height: 30px;
+	width: 30px;
+	float:right;
+	border-radius: 3px;
+}
+
+.menus input[type="checkbox"]{
+	cursor: pointer;
+}
+.menus input:checked ~ .test .barras{
+	display:none;
+}
+.menus input:not(:checked) ~ .test .x{
+	display:none;
+}
+
+.menus input:checked ~ nav{
+	display: block;
+}
+
+
