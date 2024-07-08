@@ -1,38 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printptr.c                                      :+:      :+:    :+:   */
+/*   ft_printdec.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 11:36:36 by sebferna          #+#    #+#             */
-/*   Updated: 2024/06/25 11:36:36 by sebferna         ###   ########.fr       */
+/*   Created: 2024/06/25 11:37:47 by sebferna          #+#    #+#             */
+/*   Updated: 2024/06/25 11:37:47 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printptr(int ptr, int *length)
+void	ft_putnbr(int nmb, int *length)
 {
-	char	string[25];
-	int		i;
-	char	*base;
-
-	base = "0123456789abcdef";
-	i = 0;
-	write(1, "0x", 2);
-	(*length) += 2;
-	if (ptr == 0)
+	if (nmb == -2147483648)
 	{
-		ft_putchar('0', length);
+		write(1, "-2147483648", 11);
+		(*length) += 11;
 		return ;
 	}
-	while (ptr != 0)
+	if (nmb < 0)
 	{
-		string[i] = base[ptr % 16];
-		ptr = ptr / 16;
-		i++;
+		ft_putchar('-', length);
+		ft_putnbr(nmb * -1, length);
 	}
-	while (i--)
-		ft_putchar(string[i], length);
+	else
+	{
+		if (nmb > 9)
+			ft_putnbr(nmb / 10, length);
+		ft_putchar(nmb % 10 + '0', length);
+	}
 }

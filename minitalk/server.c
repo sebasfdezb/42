@@ -32,7 +32,7 @@ void	bit_handler(int bit)
 int	main(void)
 {
 	ft_printf("Welcome To My SERVER!");
-	ft_printf("SERVER PID: %d",getpid());
+	ft_printf("SERVER PID: %d", getpid());
 	while (1)
 	{
 		signal(SIGUSR2, bit_handler);

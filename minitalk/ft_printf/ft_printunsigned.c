@@ -12,15 +12,11 @@
 
 #include "ft_printf.h"
 
-int	ft_printunsigned(unsigned long long int n)
+void	ft_printunsigned(unsigned int n, int *length)
 {
-	int		count;
-	char	c;
-
-	count = 0;
-	if (n > 9)
-		count += ft_printdec(n / 10);
-	c = n % 10 + '0';
-	count += ft_printchar(c);
-	return (count);
+	if (n >= 10)
+		ft_printunsigned(n / 10, length);
+	if (*length == -1)
+		return ;
+	ft_putchar(n % 10 + '0', length);
 }

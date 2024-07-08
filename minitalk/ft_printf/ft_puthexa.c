@@ -1,36 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printptr.c                                      :+:      :+:    :+:   */
+/*   ft_printhexa.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/25 11:36:36 by sebferna          #+#    #+#             */
-/*   Updated: 2024/06/25 11:36:36 by sebferna         ###   ########.fr       */
+/*   Created: 2024/06/25 11:37:07 by sebferna          #+#    #+#             */
+/*   Updated: 2024/06/25 11:37:07 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_printptr(int ptr, int *length)
+void	ft_puthexa(unsigned int n, int *length, char x)
 {
 	char	string[25];
-	int		i;
 	char	*base;
+	int		i;
 
-	base = "0123456789abcdef";
+	if (x == 'X')
+		base = "0123456789ABCDEF";
+	else
+		base = "0123456789abcdef";
 	i = 0;
-	write(1, "0x", 2);
-	(*length) += 2;
-	if (ptr == 0)
+	if (n == 0)
 	{
 		ft_putchar('0', length);
 		return ;
 	}
-	while (ptr != 0)
+	while (n != 0)
 	{
-		string[i] = base[ptr % 16];
-		ptr = ptr / 16;
+		string[i] = base[n % 16];
+		n = n / 16;
 		i++;
 	}
 	while (i--)

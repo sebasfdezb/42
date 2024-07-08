@@ -18,11 +18,12 @@
 # include <stddef.h>
 # include <stdlib.h>
 
-int	ft_printstr(char *str);
-int	ft_printhexa(unsigned long long n, char c);
-int	ft_printptr(unsigned long long ptr);
-int	ft_printstr(char *str);
-int	ft_printunsigned(unsigned long long int n);
-int	ft_printf(char const *str, ...);
+void	ft_putstr(char *str, int *length);
+void	ft_putchar(char c, int *length);
+void	ft_puthexa(unsigned int n, int *length, char x);
+void	ft_printptr(int ptr, int *length);
+void	ft_printunsigned(unsigned int n, int *length);
+int		ft_printf(char const *str, ...);
+void	ft_putnbr(int nmb, int *length);
 
 #endif

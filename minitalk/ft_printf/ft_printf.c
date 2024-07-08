@@ -6,61 +6,61 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 12:29:21 by sebferna          #+#    #+#             */
-/*   Updated: 2024/07/01 12:07:54 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/07/08 13:17:21 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_filter(char const *str, int i, va_list *args)
+static void	ft_filter(char str, va_list *args, int *leng)
 {
-	int	filtrated_c;
 
-	filtrated_c = 0;
-	if (str[i] == 'c')
-		filtrated_c += ft_printchar(va_arg(*args, int));
-	if (str[i] == 's')
-		filtrated_c += ft_printstr(va_arg(*args, char *));
-	if (str[i] == 'x' || str[i] == 'X')
-		filtrated_c += ft_printhexa(va_arg(*args, unsigned int), str[i]);
-	if (str[i] == 'p')
-		filtrated_c += ft_printptr(va_arg(*args, unsigned long long));
-	if (str[i] == 'd')
-		filtrated_c += ft_printdec(va_arg(*args, int));
-	if (str[i] == 'i')
-		filtrated_c += ft_printdec(va_arg(*args, int));
-	if (str[i] == '%')
-		filtrated_c += ft_printchar('%');
-	if (str[i] == 'u')
-		filtrated_c += ft_printunsigned(va_arg(*args, unsigned int));
-	return (filtrated_c);
+	if (str == 'c')
+		ft_putchar(va_arg(*args, int), leng);
+	if (str == 's')
+		ft_putstr(va_arg(*args, char *), leng);
+	if (str == 'x')
+		ft_puthexa(va_arg(*args, unsigned int), leng, 'x');
+	if (str == 'X')
+		ft_puthexa(va_arg(*args, unsigned int), leng, 'X');
+	if (str == 'p')
+		ft_printptr(va_arg(*args, unsigned int), leng);
+	if (str == 'd')
+		ft_putnbr(va_arg(*args, int), leng);
+	if (str == 'i')
+		ft_putnbr(va_arg(*args, int), leng);
+	if (str == '%')
+		ft_putchar('%', leng);
+	if (str == 'u')
+		ft_printunsigned(va_arg(*args, unsigned int), leng);
 }
 
 int	ft_printf(char const *str, ...)
 {
 	va_list	args;
 	int		i;
-	int		c;
+	int		length;
 
 	i = 0;
-	c = 0;
+	length = 0;
 	va_start (args, str);
-	while (str[i] != 0)
+	while (str[i] != '\0')
 	{
-		if (str[i] != '%')
+		if (str[i] == '%')
 		{
-			ft_printchar(str[i]);
-			c++;
+			i++;
+			ft_filter(str[i], &args, &length);
 		}
 		else
 		{
-			i++;
-			c += ft_filter(str, i, &args);
+			if (write(1, &str[i], 1) < 0)
+				return (-1);
+			length++;	
 		}
 		i++;
 	}
 	va_end (args);
-	return (c);
+	return (length);
 }
 
 /* int	main(void)
