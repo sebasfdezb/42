@@ -51,16 +51,15 @@ void	conv_txt(char *str)
 			control--;
 		}
 		write(1, &result, 1);
-		i = i + 8;
+		i += 16;
 	}
 }
 
 void	alm_bit(int sig)
 {
-	static int	i;
-	static char	c[8];
+	static int	i = 0;
+	static char	c[9];
 
-	i = 0;
 	if (sig == SIGUSR1)
 		c[i] = '1';
 	else if (sig == SIGUSR2)
@@ -68,21 +67,20 @@ void	alm_bit(int sig)
 	i++;
 	if (i == 8)
 	{
-		i = 0;
+		c[i] = '\0';
 		conv_txt(c);
+		i = 0;
 	}
 }
 
 int	main(void)
 {
 	write(1, "PID: ", 5);
-	getpid();
 	ft_putnmbr(getpid());
 	write(1, "\n", 1);
 	signal(SIGUSR1, alm_bit);
 	signal(SIGUSR2, alm_bit);
 	while (1)
-		sleep(1);
+		pause();
 	return (0);
 }
-

@@ -12,23 +12,6 @@
 
 #include "ft_printf/ft_printf.h"
 
-int	ft_atoi(const char *str)
-{
-	int				i;
-	long long int	nbr;
-
-	nbr = 0;
-	i = 0;
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		nbr = nbr * 10 + str[i] - '0';
-		i++;
-		if (nbr > INT_MAX)
-			return (-1);
-	}
-	return (nbr);
-}
-
 void	conv_bin(char *str, int pid)
 {
 	int		i;

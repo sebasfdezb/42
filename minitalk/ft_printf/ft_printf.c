@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 12:29:21 by sebferna          #+#    #+#             */
-/*   Updated: 2024/07/08 13:17:21 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/07/09 13:39:35 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	ft_filter(char str, va_list *args, int *leng)
 {
-
 	if (str == 'c')
 		ft_putchar(va_arg(*args, int), leng);
 	if (str == 's')
@@ -55,7 +54,7 @@ int	ft_printf(char const *str, ...)
 		{
 			if (write(1, &str[i], 1) < 0)
 				return (-1);
-			length++;	
+			length++;
 		}
 		i++;
 	}
