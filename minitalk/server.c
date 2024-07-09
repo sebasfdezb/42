@@ -12,32 +12,77 @@
 
 #include "ft_printf/ft_printf.h"
 
-void	bit_handler(int bit)
+static void	ft_putcchar(int c)
 {
-	int	i;
+	write(1, &c, 1);
+}
+
+void	ft_putnmbr(int num)
+{
+	if (num > 9)
+	{
+		ft_putnmbr(num / 10);
+		num = num % 10;
+	}
+	if (num <= 9)
+		ft_putcchar(('0' + num));
+}
+
+void	conv_txt(char *str)
+{
+	int		i;
+	int		base;
+	char	bit;
+	int		control;
+	int		result;
+
+	i = 7;
+	while (str[i])
+	{
+		base = 1;
+		control = i;
+		result = 0;
+		while (base <= 128)
+		{
+			bit = str[control];
+			if (bit == '1')
+				result = result + base;
+			base = base * 2;
+			control--;
+		}
+		write(1, &result, 1);
+		i = i + 8;
+	}
+}
+
+void	alm_bit(int sig)
+{
+	static int	i;
+	static char	c[8];
 
 	i = 0;
-	g_msg.c += ((bit & 1) << g_msg.i);
-	g_msg.i++;
-	if (g_msg.i == 7)
+	if (sig == SIGUSR1)
+		c[i] = '1';
+	else if (sig == SIGUSR2)
+		c[i] = '0';
+	i++;
+	if (i == 8)
 	{
-		ft_printf("%c", g_msg.c);
-		if (!g_msg.c)
-			ft_printf("\n");
-		g_msg.c = 0;
-		g_msg.i = 0;
+		i = 0;
+		conv_txt(c);
 	}
 }
 
 int	main(void)
 {
-	ft_printf("Welcome To My SERVER!");
-	ft_printf("SERVER PID: %d", getpid());
+	write(1, "PID: ", 5);
+	getpid();
+	ft_putnmbr(getpid());
+	write(1, "\n", 1);
+	signal(SIGUSR1, alm_bit);
+	signal(SIGUSR2, alm_bit);
 	while (1)
-	{
-		signal(SIGUSR2, bit_handler);
-		signal(SIGUSR1, bit_handler);
-		pause();
-	}
+		sleep(1);
 	return (0);
 }
+

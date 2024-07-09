@@ -12,23 +12,45 @@
 
 #include "ft_printf/ft_printf.h"
 
-void	send_bit(int pid, char *str, size_t len)
+int	ft_atoi(const char *str)
 {
-	int		move;
-	size_t	i;
+	int				i;
+	long long int	nbr;
+
+	nbr = 0;
+	i = 0;
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		nbr = nbr * 10 + str[i] - '0';
+		i++;
+		if (nbr > INT_MAX)
+			return (-1);
+	}
+	return (nbr);
+}
+
+void	conv_bin(char *str, int pid)
+{
+	int		i;
+	int		base;
+	char	lettr;
 
 	i = 0;
-	while (i <= len)
+	while (str[i])
 	{
-		move = 0;
-		while (move < 7)
+		base = 128;
+		lettr = str[i];
+		while (base > 0)
 		{
-			if ((str[i] >> move) & 1)
-				kill(pid, SIGUSR2);
-			else
+			if (lettr >= base)
+			{
 				kill(pid, SIGUSR1);
-			move++;
-			usleep(30);
+				lettr = lettr - base;
+			}
+			else
+				kill(pid, SIGUSR2);
+			base = base / 2;
+			usleep(100);
 		}
 		i++;
 	}
@@ -36,16 +58,11 @@ void	send_bit(int pid, char *str, size_t len)
 
 int	main(int argc, char **argv)
 {
-	int		pid;
-	char	*str;
+	int	pid;
 
-	if (argc == 3)
-	{
-		pid = ft_atoi(argv[1]);
-		str = argv[2];
-		send_bit(pid, str, ft_strlen(str));
-	}
-	else
-		ft_printf("\nEsta Vacio o Hay mas de 1 Palabra");
+	if (argc != 3)
+		return (-1);
+	pid = ft_atoi(argv[1]);
+	conv_bin(argv[2], pid);
 	return (0);
 }

@@ -17,6 +17,9 @@
 # include <stdarg.h>
 # include <stddef.h>
 # include <stdlib.h>
+# include <signal.h>
+# include <limits.h>
+# include <sys/types.h>
 
 void	ft_putstr(char *str, int *length);
 void	ft_putchar(char c, int *length);
@@ -25,5 +28,7 @@ void	ft_printptr(int ptr, int *length);
 void	ft_printunsigned(unsigned int n, int *length);
 int		ft_printf(char const *str, ...);
 void	ft_putnbr(int nmb, int *length);
+int		ft_atoi(const char *str);
+int		ft_strlen(const char *str);
 
 #endif
