@@ -12,16 +12,18 @@
 
 SERVER = server
 CLIENT = client
+SERVER_BONUS = server_bonus
+CLIENT_BONUS = client_bonus
 
 PRINTF_DIR = ft_printf
-PRINTF_LIB = libftprintf.a
-PRINTF_INC = ft_printf.h
 
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 LIBS = -L$(PRINTF_DIR) -lftprintf
 
 all: $(SERVER) $(CLIENT)
+
+bonus: $(SERVER_BONUS) $(CLIENT_BONUS)
 
 $(SERVER): server.c
 	@make -s -C $(PRINTF_DIR)
@@ -33,13 +35,23 @@ $(CLIENT): client.c
 	@$(CC) $(CFLAGS) -I$(PRINTF_DIR) client.c -o $(CLIENT) $(LIBS)
 	@echo "Client is Ready!"
 
+$(SERVER_BONUS): server_bonus.c
+	@make -s -C $(PRINTF_DIR)
+	@$(CC) $(CFLAGS) -I$(PRINTF_DIR) server_bonus.c -o $(SERVER_BONUS) $(LIBS)
+	@echo "Server Bonus is Ready!"
+
+$(CLIENT_BONUS): client_bonus.c
+	@make -s -C $(PRINTF_DIR)
+	@$(CC) $(CFLAGS) -I$(PRINTF_DIR) client_bonus.c -o $(CLIENT_BONUS) $(LIBS)
+	@echo "Client Bonus is Ready!"
+
 clean:
 	@make clean -s -C $(PRINTF_DIR)
-	@rm -f $(SERVER) $(CLIENT)
+	@rm -f $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS)
 
 fclean: clean
 	@make fclean -s -C $(PRINTF_DIR)
-	@rm -f $(SERVER) $(CLIENT)
+	@rm -f $(SERVER) $(CLIENT) $(SERVER_BONUS) $(CLIENT_BONUS)
 	@echo "Server and Client Cleaned!"
 
 re: fclean all
