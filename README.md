@@ -1,7 +1,7 @@
-💻 42 Projects
-¡Bienvenid@ a mi repositorio! Aquí encontrarás una recopilación de los proyectos que he realizado como parte de mi formación en 42.
+<h1 align="center">💻 42 Projects</h1>
+<p><strong>¡Bienvenid@ a mi repositorio!</strong> Aquí encontrarás una recopilación de los proyectos que he realizado como parte de mi formación en <strong>42</strong>.</p>
 
-🛠️ Tecnologías y Lenguajes
+<h2 align="center">🛠️ Tecnologías y Lenguajes</h2>
 En estos proyectos, he trabajado con:
 
 Lenguaje C
