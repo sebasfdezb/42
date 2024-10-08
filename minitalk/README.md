@@ -1,4 +1,4 @@
-<h2>GET NEXT LINE</h2>
+<h2>MINITALK</h2>
 <p>implementar un sistema de comunicación entre un servidor y un cliente utilizando señales Unix.</p>
 <h2>Servidor</h2>
 <ul>
