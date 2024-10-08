@@ -1,3 +1,5 @@
+!(https://github.com/sebasfdezb/42/blob/main/solong/simplescreenrecorder-2024-10-08_13.05.35-_online-video-cutter.com_%20(2).gif)
+
 <h2>So Long</h2>
 
 <h3>Objetivo</h3>
