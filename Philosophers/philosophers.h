@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:44 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/09 13:07:45 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:40:20 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,8 @@ typedef struct s_philo
 	size_t			time_to_die;
 	size_t			time_to_sleep;
 	size_t			start_time;
-	int				nbr_philos;
-	int				nbr_time_to_eat;
+	int				num_philos;
+	int				num_time_to_eat;
 	int				*dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	*l_fork;
@@ -52,6 +52,10 @@ typedef struct s_data
 	t_philo			*philos;
 }	t_data;
 
+
+void	spectator(void *spectator);
+
+int	check_args(int argc, char **str);
 
 #endif
 

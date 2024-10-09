@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:31:53 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/09 13:07:49 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/09 19:40:06 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ int	destroy_thread(char *error, t_data *data)
 	pthread_mutex_destroy(&data->meal_lock);
 	pthread_mutex_destroy(&data->dead_lock);
 	i = -1;
-	while (++i < data->philos[0].nbr_philos)
-		pthread_mutex_destroy(&data->philos[i].mutex);
+	while (++i < data->philos[0].num_philos)
+		pthread_mutex_destroy(&data->philos[i]);
 	free(data);
 	return (EXIT_FAILURE);
 }
@@ -44,7 +44,7 @@ static void	init_thread(t_data *data, int n)
 	while (++i < n)
 	{
 		if (pthread_create(&data->philos[i].thread, NULL,
-				&routine, &data->philo[i]) != 0)
+				&routine, &data->philos[i]) != 0)
 			destroy_thread("Philosopher thread creation error", data);
 	}
 	if (pthread_join(monitor, NULL) != 0)
@@ -60,14 +60,14 @@ static void	init_thread(t_data *data, int n)
 
 static void	init_arg(t_philo *philo, char **argv)
 {
-	philo->nbr_philos = ft_atoi(argv[1]);
+	philo->num_philos = ft_atoi(argv[1]);
 	philo->time_to_die = ft_atoi(argv[2]);
 	philo->time_to_eat = ft_atoi(argv[3]);
 	philo->time_to_sleep = ft_atoi(argv[4]);
 	if (argv[5] != NULL)
-		philo->nbr_time_eat = ft_atoi(argv[5]);
+		philo->num_time_to_eat = ft_atoi(argv[5]);
 	else
-		philo->nbr_time_eat = -1;
+		philo->num_time_to_eat = -1;
 }
 
 static void	init_struct(t_data *data, t_philo *philos, int i, char **argv)
@@ -79,7 +79,7 @@ static void	init_struct(t_data *data, t_philo *philos, int i, char **argv)
 	pthread_mutex_init(&data->meal_lock, NULL);
 	while (++i < ft_atoi(argv[1]))
 	{
-		pthread_mutex_init(&data->fork[i], NULL);
+		pthread_mutex_init(&data->forks[i], NULL);
 		philos[i].id = i + 1;
 		philos[i].meals_eaten = 0;
 		philos[i].start_time = get_time();
@@ -89,7 +89,7 @@ static void	init_struct(t_data *data, t_philo *philos, int i, char **argv)
 		philos[i].dead_lock = &data->dead_lock;
 		philos[i].meal_lock = &data->meal_lock;
 		philos[i].dead = &data->dead_flag;
-		philos[i].l_fork = &data->fork[i];
+		philos[i].l_fork = &data->forks[i];
 		if (i == 0)
 			philos[i].r_fork = &data->forks[ft_atoi(argv[1]) - 1];
 		else
@@ -99,15 +99,16 @@ static void	init_struct(t_data *data, t_philo *philos, int i, char **argv)
 
 int	main(int argc, char **argv)
 {
-	t_data	*data;
-	t_philo	philos[PHIL_MAX];
+	t_data			*data;
+	t_philo			philos[PHIL_MAX];
+	pthread_mutex_t	forks[PHIL_MAX];
 
 	if (check_args(argc, argv) == 1)
 		return (EXIT_FAILURE);
 	data = (t_data *)malloc(sizeof(t_data));
 	init_struct(data, philos, 0, argv);
 	init_forks(forks, ft_atoi(argv[1]));
-	init_thread(data, forks, ft_atoi(argv[1]));
+	init_thread(data, ft_atoi(argv[1]));
 	destroy_thread(NULL, data);
 	return (EXIT_SUCCESS);
 }

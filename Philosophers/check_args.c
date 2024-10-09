@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:34:29 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/09 13:07:51 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/09 18:56:42 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,5 @@ int	check_args(int argc, char **str)
 	if (ft_atoi(str[1]) < 1 || ft_atoi(str[1]) > 200 || ft_atoi(str[2]) == 0
 		|| ft_atoi(str[3]) == 0 || ft_atoi(str[4]) == 0)
 		return (EXIT_FAILURE);
-	return (EXIT_SUCCES);
+	return (EXIT_SUCCESS);
 }
