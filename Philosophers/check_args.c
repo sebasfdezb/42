@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:34:29 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/08 11:27:45 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:07:51 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	ft_atoi(char *str)
 static int	is_digit(char c)
 {
 	if (c >= '0' && c <= '9')
-		return (EXIT_SUCCES);
+		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
 }
 

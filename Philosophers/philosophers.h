@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:44 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/08 12:13:21 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/09 13:07:45 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	forks[PHIL_MAX];
 	t_philo			*philos;
 }	t_data;
 
