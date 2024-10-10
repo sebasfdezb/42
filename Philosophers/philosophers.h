@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:44 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/10 12:11:38 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:50:40 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,9 @@ typedef struct s_data
 }	t_data;
 
 // SPECTATOR
-void		spectator(void *spectator);
+void		*spectator(void *spectator);
+int			check_dead(t_philo *philo);
+int			check_need_meal(t_philo *philo);
 
 // ROUTINE
 void		*routine(void *philo);
@@ -60,14 +62,16 @@ void		*routine(void *philo);
 //UTILS
 void		philo_msg(char *str, t_philo *philo, int id);
 int			destroy_thread(char *error, t_data *data);
+size_t		get_time(void);
 
 //CHECK ARGS
 int			check_args(int argc, char **str);
+int			ft_atoi(char *str);
 
 //INIT
-static void	init_struct(t_data *data, t_philo *philos, int i, char **argv);
-static void	init_arg(t_philo *philo, char **argv);
-static void	init_thread(t_data *data, int n);
-static void	init_forks(pthread_mutex_t *forks, int nbr);
+void	init_struct(t_data *data, t_philo *philos, int i, char **argv);
+void	init_arg(t_philo *philo, char **argv);
+void	init_thread(t_data *data, int n);
+void	init_forks(pthread_mutex_t *forks, int nbr);
 
 #endif

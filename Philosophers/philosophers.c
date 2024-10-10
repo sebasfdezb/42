@@ -6,13 +6,13 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:31:53 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/10 12:08:47 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:50:03 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static void	init_forks(pthread_mutex_t *forks, int nbr)
+void	init_forks(pthread_mutex_t *forks, int nbr)
 {
 	int	i;
 
@@ -24,12 +24,12 @@ static void	init_forks(pthread_mutex_t *forks, int nbr)
 	}
 }
 
-static void	init_thread(t_data *data, int n)
+void	init_thread(t_data *data, int n)
 {
 	pthread_t	monitor;
 	int			i;
 
-	if (pthread_create(&monitor, NULL, &spectator, data) != 0)
+	if (pthread_create(&monitor, NULL, &spectator, &data->philos) != 0)
 		destroy_thread("Monitor thread creation error", data);
 	i = -1;
 	while (++i < n)
@@ -48,7 +48,7 @@ static void	init_thread(t_data *data, int n)
 	}
 }
 
-static void	init_arg(t_philo *philo, char **argv)
+void	init_arg(t_philo *philo, char **argv)
 {
 	philo->num_philos = ft_atoi(argv[1]);
 	philo->time_to_die = ft_atoi(argv[2]);
@@ -60,7 +60,7 @@ static void	init_arg(t_philo *philo, char **argv)
 		philo->num_time_to_eat = -1;
 }
 
-static void	init_struct(t_data *data, t_philo *philos, int i, char **argv)
+void	init_struct(t_data *data, t_philo *philos, int i, char **argv)
 {
 	data->dead_flag = 0;
 	data->philos = philos;

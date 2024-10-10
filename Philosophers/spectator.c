@@ -6,13 +6,13 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:45:15 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/10 11:02:14 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:43:41 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-static int	check_need_meal(t_philo *philo)
+int	check_need_meal(t_philo *philo)
 {
 	int	i;
 	int	end_eating;
@@ -38,7 +38,7 @@ static int	check_need_meal(t_philo *philo)
 	return (EXIT_SUCCESS);
 }
 
-static int	check_dead(t_philo *philo)
+int	check_dead(t_philo *philo)
 {
 	int	i;
 
@@ -60,13 +60,13 @@ static int	check_dead(t_philo *philo)
 	return (EXIT_SUCCESS);
 }
 
-void	spectator(void *spectator)
+void	*spectator(void *spectator)
 {
 	t_philo	*s;
 
-	s = spectator;
+	s = (t_philo *)spectator;
 	while (50)
 		if (cheak_dead(s) == 1 || check_need_meal(spectator) == 1)
 			break ;
-	return (spectator);
+	return (s);
 }
