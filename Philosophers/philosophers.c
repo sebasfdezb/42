@@ -6,31 +6,22 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:31:53 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/09 19:40:06 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:08:47 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	destroy_thread(char *error, t_data *data)
+static void	init_forks(pthread_mutex_t *forks, int nbr)
 {
 	int	i;
 
-	i = -1;
-	if (error)
+	i = 0;
+	while (i < nbr)
 	{
-		while (error[++i])
-			write(1, &error[i], 1);
-		write(1, "\n", 1);
+		pthread_mutex_init(&forks[i], NULL);
+		i++;
 	}
-	pthread_mutex_destroy(&data->write_lock);
-	pthread_mutex_destroy(&data->meal_lock);
-	pthread_mutex_destroy(&data->dead_lock);
-	i = -1;
-	while (++i < data->philos[0].num_philos)
-		pthread_mutex_destroy(&data->philos[i]);
-	free(data);
-	return (EXIT_FAILURE);
 }
 
 static void	init_thread(t_data *data, int n)
@@ -56,7 +47,6 @@ static void	init_thread(t_data *data, int n)
 			destroy_thread("Philosophers thread join error", data);
 	}
 }
-
 
 static void	init_arg(t_philo *philo, char **argv)
 {

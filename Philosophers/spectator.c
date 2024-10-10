@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:45:15 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/09 19:19:45 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/10 11:02:14 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 static int	check_need_meal(t_philo *philo)
 {
-	int i;
-	int end_eating;
+	int	i;
+	int	end_eating;
 
 	i = -1;
 	end_eating = 0;

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:34:29 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/09 18:56:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:11:27 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static int	ft_atoi(char *str)
 	i = 0;
 	result = 0;
 	sign = 1;
-
 	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
 		i++;
 	if (str[i] == '-')

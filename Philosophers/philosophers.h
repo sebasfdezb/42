@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:44 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/09 19:40:20 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/10 12:11:38 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <sys/time.h>
 
 # define PHIL_MAX 200
-
 
 typedef struct s_philo
 {
@@ -52,10 +51,23 @@ typedef struct s_data
 	t_philo			*philos;
 }	t_data;
 
+// SPECTATOR
+void		spectator(void *spectator);
 
-void	spectator(void *spectator);
+// ROUTINE
+void		*routine(void *philo);
 
-int	check_args(int argc, char **str);
+//UTILS
+void		philo_msg(char *str, t_philo *philo, int id);
+int			destroy_thread(char *error, t_data *data);
+
+//CHECK ARGS
+int			check_args(int argc, char **str);
+
+//INIT
+static void	init_struct(t_data *data, t_philo *philos, int i, char **argv);
+static void	init_arg(t_philo *philo, char **argv);
+static void	init_thread(t_data *data, int n);
+static void	init_forks(pthread_mutex_t *forks, int nbr);
 
 #endif
-

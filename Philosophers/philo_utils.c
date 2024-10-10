@@ -12,6 +12,27 @@
 
 #include "philosophers.h"
 
+int	destroy_thread(char *error, t_data *data)
+{
+	int	i;
+
+	i = -1;
+	if (error)
+	{
+		while (error[++i])
+			write(1, &error[i], 1);
+		write(1, "\n", 1);
+	}
+	pthread_mutex_destroy(&data->write_lock);
+	pthread_mutex_destroy(&data->meal_lock);
+	pthread_mutex_destroy(&data->dead_lock);
+	i = -1;
+	while (++i < data->philos[0].num_philos)
+		pthread_mutex_destroy(&data->philos[i]);
+	free(data);
+	return (EXIT_FAILURE);
+}
+
 int	dead_loop(t_philo *philo)
 {
 	pthread_mutex_lock(philo->dead_lock);
@@ -30,7 +51,7 @@ size_t	get_time(void)
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
-void philo_msg(char *str, t_philo *philo, int id)
+void	philo_msg(char *str, t_philo *philo, int id)
 {
 	size_t	time;
 
