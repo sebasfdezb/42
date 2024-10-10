@@ -21,3 +21,4 @@
     <li><code>./client &lt;nombre del servidor&gt; &lt;"cualquier mensaje que quieras escribir en cadenas"&gt;</code></li>
     <li>Pulsa <code>Control + Z</code> en tu teclado para cerrar el programa.</li>
 </ol>
+<img src="https://raw.githubusercontent.com/sebasfdezb/42/main/minitalk/DALL%C2%B7E%202024-10-10%2013.07.54%20-%20An%20illustration%20representing%20the%20'Minitalk'%20project%20from%2042%2C%20showcasing%20a%20creative%20concept%20of%20two%20computers%20communicating%20through%20a%20series%20of%20colorful.webp" alt="Minitalk project illustration" width="300px">
