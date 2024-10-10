@@ -10,3 +10,6 @@
 - Algoritmos y estructuras de datos
 - Sistemas operativos
 - Desarrollo de software colaborativo
+
+<img src="https://media.licdn.com/dms/image/D4D12AQH87JCWFrJa0w/article-cover_image-shrink_600_2000/0/1663149034083?e=2147483647&v=beta&t=WTDV1QJflRlzNIOafKgUuYaQANdUDvRobPYfe2Wd4bI" style="margin-top: 20px; width: 300px; height: auto;">
+
