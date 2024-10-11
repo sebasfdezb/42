@@ -6,13 +6,13 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:02:36 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/10 12:02:14 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/11 10:04:48 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-void	ft_usleep(size_t milliseconds)
+int	ft_usleep(size_t milliseconds)
 {
 	size_t	first;
 
@@ -64,7 +64,7 @@ void	*routine(void *philo)
 	philos = (t_philo *)philo;
 	if (philos->id % 2 == 0)
 		ft_usleep(1);
-	while (!dead_loop(philos))
+	while (dead_loop(philo) != EXIT_FAILURE)
 	{
 		eating(philos);
 		sleeping(philos);

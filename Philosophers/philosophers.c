@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:31:53 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/10 12:50:03 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/11 11:49:11 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,20 @@ void	init_thread(t_data *data, int n)
 	pthread_t	monitor;
 	int			i;
 
-	if (pthread_create(&monitor, NULL, &spectator, &data->philos) != 0)
-		destroy_thread("Monitor thread creation error", data);
 	i = -1;
 	while (++i < n)
 	{
 		if (pthread_create(&data->philos[i].thread, NULL,
-				&routine, &data->philos[i]) != 0)
+				&routine, &(data->philos[i])) != 0)
 			destroy_thread("Philosopher thread creation error", data);
 	}
+	write(1, "aqui1\n", 6);
+	if (pthread_create(&monitor, NULL, &spectator, data->philos) != 0)
+		destroy_thread("Monitor thread creation error", data);
+	write(1, "aqui2\n", 6);
 	if (pthread_join(monitor, NULL) != 0)
 		destroy_thread("Monitor thread join error", data);
+	write(1, "aqui3\n", 6);
 	i = -1;
 	while (++i < n)
 	{
@@ -92,13 +95,13 @@ int	main(int argc, char **argv)
 	t_data			*data;
 	t_philo			philos[PHIL_MAX];
 	pthread_mutex_t	forks[PHIL_MAX];
-
 	if (check_args(argc, argv) == 1)
 		return (EXIT_FAILURE);
 	data = (t_data *)malloc(sizeof(t_data));
 	init_struct(data, philos, 0, argv);
 	init_forks(forks, ft_atoi(argv[1]));
 	init_thread(data, ft_atoi(argv[1]));
+	write(1, "Dest\n", 5);
 	destroy_thread(NULL, data);
 	return (EXIT_SUCCESS);
 }

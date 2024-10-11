@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:45:15 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/10 12:43:41 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/11 12:02:16 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_need_meal(t_philo *philo)
 		pthread_mutex_lock(philo[0].dead_lock);
 		*philo->dead = 1;
 		pthread_mutex_unlock(philo[0].dead_lock);
-		return (EXDEV);
+		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
@@ -45,8 +45,8 @@ int	check_dead(t_philo *philo)
 	i = -1;
 	while (++i < philo[0].num_philos)
 	{
-		pthread_mutex_lock(philo->meal_lock);
-		if (get_time() - philo->last_meal >= philo[i].time_to_die)
+		pthread_mutex_lock(philo[i].meal_lock);
+		if (get_time() - philo[i].last_meal >= philo[i].time_to_die)
 		{
 			pthread_mutex_unlock(philo[i].meal_lock);
 			philo_msg("died", &philo[i], philo[i].id);
@@ -64,9 +64,9 @@ void	*spectator(void *spectator)
 {
 	t_philo	*s;
 
-	s = (t_philo *)spectator;
-	while (50)
-		if (cheak_dead(s) == 1 || check_need_meal(spectator) == 1)
+	s = spectator;
+	while (12)
+		if (check_dead(s) == EXIT_FAILURE || check_need_meal(s) == EXIT_FAILURE)
 			break ;
 	return (s);
 }
