@@ -14,8 +14,6 @@ NAME = philo
 
 CFLAGS = -Wall -Werror -Wextra
 
-PHILO = philo.a
-
 SRC = philosophers.c\
 		check_args.c\
 		philo_utils.c\
@@ -25,8 +23,7 @@ SRC = philosophers.c\
 OBJS = $(SRC:.c=.o)
 
 $(NAME):	$(OBJS)
-		@ ar rcs $(PHILO) $(OBJS)
-		@ gcc $(CFLAGS) $(PHILO) -o $(NAME)
+		@ gcc $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJS):	%.o : %.c
 		@ gcc $(CFLAGS) -c $< -o $@
@@ -37,7 +34,7 @@ clean:
 		@rm -f $(OBJS)
 
 fclean:			
-		@rm -f $(NAME) $(OBJS) $(PHILO)
+		@rm -f $(NAME) $(OBJS)
 
 re: fclean all
 

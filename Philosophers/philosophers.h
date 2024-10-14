@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:44 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/11 10:06:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:29:26 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 # include <sys/time.h>
 
 # define PHIL_MAX 200
+# define RC "\033[0m"
+# define CYAN "\033[0;96m"
+# define GREEN "\033[0;92m"
+# define BROWN "\033[38;2;184;143;29m"
+# define RED "\033[0;91m"
 
 typedef struct s_philo
 {
@@ -47,7 +52,6 @@ typedef struct s_data
 	pthread_mutex_t	dead_lock;
 	pthread_mutex_t	meal_lock;
 	pthread_mutex_t	write_lock;
-	pthread_mutex_t	forks[PHIL_MAX];
 	t_philo			*philos;
 }	t_data;
 
@@ -61,7 +65,7 @@ void		*routine(void *philo);
 
 //UTILS
 void		philo_msg(char *str, t_philo *philo, int id);
-int			destroy_thread(char *error, t_data *data);
+void		destroy_thread(char *error, t_data *data, pthread_mutex_t *forks);
 size_t		get_time(void);
 int			dead_loop(t_philo *philo);
 
@@ -70,9 +74,9 @@ int			check_args(int argc, char **str);
 int			ft_atoi(char *str);
 
 //INIT
-void		init_struct(t_data *data, t_philo *philos, int i, char **argv);
+void		init_struct(t_data *d, t_philo *p, char **argv, pthread_mutex_t *f);
 void		init_arg(t_philo *philo, char **argv);
-void		init_thread(t_data *data, int n);
+void		init_thread(t_data *data, int n, pthread_mutex_t *forks);
 void		init_forks(pthread_mutex_t *forks, int nbr);
 
 #endif

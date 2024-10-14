@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 10:34:29 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/10 12:15:22 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:12:04 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	check_args(int argc, char **str)
 	int	j;
 
 	if (argc < 5 || argc > 6)
-		return (printf("Error: Invalid number of Arguments"));
+		return (printf("Error: Invalid number of Arguments\n"), EXIT_FAILURE);
 	i = 0;
 	j = 0;
 	while (str[++i])
@@ -58,8 +58,10 @@ int	check_args(int argc, char **str)
 			if (is_digit(str[i][j]) == 1)
 				return (EXIT_FAILURE);
 	}
-	if (ft_atoi(str[1]) < 1 || ft_atoi(str[1]) > 200 || ft_atoi(str[2]) == 0
-		|| ft_atoi(str[3]) == 0 || ft_atoi(str[4]) == 0)
+	if (ft_atoi(str[1]) < 1 || ft_atoi(str[1]) > PHIL_MAX
+		|| ft_atoi(str[2]) == 0 || ft_atoi(str[3]) == 0 || ft_atoi(str[4]) == 0)
+		return (EXIT_FAILURE);
+	if (ft_atoi(str[2]) < 60 || ft_atoi(str[3]) < 60 || ft_atoi(str[4]) < 60)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

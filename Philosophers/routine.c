@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/10 11:02:36 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/11 10:04:48 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:18:33 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_usleep(size_t milliseconds)
 
 void	thinking(t_philo *philo)
 {
-	philo_msg("is thinking", philo, philo->id);
+	philo_msg(GREEN "is thinking" RC, philo, philo->id);
 }
 
 void	sleeping(t_philo *philo)
 {
-	philo_msg("is sleeping", philo, philo->id);
+	philo_msg(CYAN "is sleeping" RC, philo, philo->id);
 	ft_usleep(philo->time_to_sleep);
 }
 
@@ -48,10 +48,10 @@ void	eating(t_philo *philo)
 	philo_msg("has taken a fork", philo, philo->id);
 	philo_msg("has taken a fork", philo, philo->id);
 	pthread_mutex_lock(philo->meal_lock);
-	philo_msg("is eating", philo, philo->id);
+	philo_msg(BROWN "is eating" RC, philo, philo->id);
 	philo->last_meal = get_time();
 	philo->meals_eaten++;
-	pthread_mutex_lock(philo->meal_lock);
+	pthread_mutex_unlock(philo->meal_lock);
 	ft_usleep(philo->time_to_eat);
 	pthread_mutex_unlock(philo->r_fork);
 	pthread_mutex_unlock(philo->l_fork);

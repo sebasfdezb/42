@@ -12,7 +12,7 @@
 
 #include "philosophers.h"
 
-int	destroy_thread(char *error, t_data *data)
+void	destroy_thread(char *error, t_data *data, pthread_mutex_t *forks)
 {
 	int	i;
 
@@ -28,9 +28,8 @@ int	destroy_thread(char *error, t_data *data)
 	pthread_mutex_destroy(&data->dead_lock);
 	i = -1;
 	while (++i < data->philos[0].num_philos)
-		pthread_mutex_destroy(&data->forks[i]);
+		pthread_mutex_destroy(&forks[i]);
 	free(data);
-	return (EXIT_FAILURE);
 }
 
 int	dead_loop(t_philo *philo)

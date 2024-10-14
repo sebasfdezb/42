@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/09 12:45:15 by sebferna          #+#    #+#             */
-/*   Updated: 2024/10/11 12:02:16 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/10/14 12:18:52 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	check_dead(t_philo *philo)
 		if (get_time() - philo[i].last_meal >= philo[i].time_to_die)
 		{
 			pthread_mutex_unlock(philo[i].meal_lock);
-			philo_msg("died", &philo[i], philo[i].id);
+			philo_msg(RED "died" RC, &philo[i], philo[i].id);
 			pthread_mutex_lock(philo[0].dead_lock);
 			*philo->dead = 1;
 			pthread_mutex_unlock(philo[0].dead_lock);
