@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/11/27 13:56:49 by sebferna          #+#    #+#             */
+/*   Updated: 2023/11/28 14:59:06 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+int	ft_isalnum(int c)
 {
-	t_data	*data;
-
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	if ((c >= 'a' && c <= 'z')
+		|| (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9'))
+		return (1);
+	return (0);
 }
+
+/* int	ft_isalnum(int c)
+{
+	if (ft_isdigit(c) || ft_isalpha(c))
+		return (1);
+	return (0);
+}
+ */

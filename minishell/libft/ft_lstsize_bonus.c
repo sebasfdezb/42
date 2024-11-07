@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/12/04 12:13:11 by sebferna          #+#    #+#             */
+/*   Updated: 2023/12/04 12:19:12 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+int	ft_lstsize(t_list *lst)
 {
-	t_data	*data;
+	int	i;
 
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	i = 1;
+	if (!lst)
+		return (0);
+	while (lst->next)
+	{
+		i++;
+		lst = lst->next;
+	}
+	return (i);
 }

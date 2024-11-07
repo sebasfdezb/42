@@ -1,29 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/11/28 15:01:42 by sebferna          #+#    #+#             */
+/*   Updated: 2023/12/12 11:00:00 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+void	*ft_calloc(size_t count, size_t size)
 {
-	t_data	*data;
+	void	*a;
+	size_t	i;
 
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	i = 0;
+	a = malloc(count * size);
+	if (a == 0)
+		return (0);
+	ft_bzero(a, count * size);
+	return (a);
 }

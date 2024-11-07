@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/12/04 12:19:56 by sebferna          #+#    #+#             */
+/*   Updated: 2023/12/04 12:25:20 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	t_data	*data;
-
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	if (lst && new)
+	{
+		new->next = *lst;
+		*lst = new;
+	}
 }

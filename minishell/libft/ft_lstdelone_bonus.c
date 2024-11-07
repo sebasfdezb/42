@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/12/04 15:20:20 by sebferna          #+#    #+#             */
+/*   Updated: 2023/12/04 15:39:26 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	t_data	*data;
-
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	if (!lst)
+		return ;
+	(*del)(lst->content);
+	free(lst);
 }

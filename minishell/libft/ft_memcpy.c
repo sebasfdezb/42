@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/11/28 10:53:52 by sebferna          #+#    #+#             */
+/*   Updated: 2023/12/05 12:20:54 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	t_data	*data;
+	char	*dest;
+	char	*source;
+	size_t	i;
 
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	if (!dst && !src)
+		return (0);
+	i = 0;
+	dest = (char *)dst;
+	source = (char *)src;
+	while (i < n)
+	{
+		dest[i] = source[i];
+		i++;
+	}
+	return (dst);
 }
+
+/* int	main(void)
+{
+	char a[] = "Hola que tal";
+	char b[] = "";
+	size_t c = 4;
+	printf("%s", ft_memcpy(b, a, c));
+	return (0);
+} */

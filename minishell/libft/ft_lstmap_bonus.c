@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/12/04 16:58:31 by sebferna          #+#    #+#             */
+/*   Updated: 2023/12/13 11:27:28 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_data	*data;
+	t_list	*new;
+	t_list	*node;
+	void	*aux;
 
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	if (!lst)
+		return (0);
+	new = 0;
+	while (lst != NULL)
+	{
+		aux = f(lst->content);
+		node = ft_lstnew(aux);
+		if (node != NULL)
+		{
+			ft_lstadd_back(&new, node);
+			lst = lst->next;
+		}
+		else
+		{
+			ft_lstclear(&new, del);
+			del(aux);
+			return (0);
+		}
+	}
+	return (new);
 }

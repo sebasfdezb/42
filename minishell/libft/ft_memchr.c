@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/11/28 12:20:31 by sebferna          #+#    #+#             */
+/*   Updated: 2023/11/28 17:30:24 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	t_data	*data;
+	size_t				i;
+	const unsigned char	*buffer;
 
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+	buffer = (const unsigned char *)s;
+	i = 0;
+	while (i < n)
+	{
+		if (buffer[i] == (unsigned char)c)
+			return ((void *)&buffer[i]);
+		i++;
+	}
+	return (NULL);
 }
+
+/* int	main(void)
+{
+	char s[] = "Hola que tal";
+	int	c = 'x';
+	size_t n = 7;
+	printf("%s", ft_memchr(s, c, n));
+	return (0);
+} */

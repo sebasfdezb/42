@@ -1,29 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 12:48:42 by sebferna         ###   ########.fr       */
+/*   Created: 2023/11/27 17:23:55 by sebferna          #+#    #+#             */
+/*   Updated: 2023/12/04 15:45:38 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int main(int argc, char **argv, char **envp)
+/* void	ft_bzero(void *s, size_t n)
 {
-	t_data	*data;
+	ft_memset(s, 0, n);
+} */
 
-	if (argc > 1)
-		return (EXIT_FAILURE);
-	(void)argc;
-	(void)argv;
-	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
-		return (EXIT_FAILURE);
-	init_struct(data);
-	dibujo();
-	return (free_all(data), EXIT_SUCCESS);
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+	char	*a;
+
+	a = (char *)s;
+	i = 0;
+	while (i < n)
+	{
+		a[i] = 0;
+		i++;
+	}
 }
+
+/* int	main(void)
+{
+	char a[20] = "Holaaa que tal";
+	int	i = 0;
+	int	b = strlen(a);
+	ft_bzero(a, 4);
+	while (i < b)
+	{
+		printf("%c", a[i]);
+		i++;
+	}
+	return (0);
+} */
