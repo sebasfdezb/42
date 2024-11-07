@@ -6,7 +6,7 @@
 #    By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:47:50 by sebferna          #+#    #+#              #
-#    Updated: 2024/11/07 19:21:31 by sebferna         ###   ########.fr        #
+#    Updated: 2024/11/07 19:23:27 by sebferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = gcc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = 
+SRC = src/minishell.c\
 
 LIBFT_DIR = ./libft
 
