@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw.c                                             :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:43:24 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 13:06:49 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:44:52 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,38 @@ void	draw(void)
     printf("| |  | |_| |_| |\\  |_| |_ _| |_| |__| |____) | |__| | |____| |____\n");
     printf("|_|  |_|_____|_| \\_|_____|_____(_)____/|_____/ \\____/|______|______|\n");
     printf("\n");
+}
+
+void    sig_ctrlslash(int sig)
+{
+    if (sig == SIGQUIT)
+    {
+        printf("Quit: 3\n");
+        rl_on_new_line();
+        rl_replace_line("", 0);
+    }
+}
+
+void    sig_ctrlc(int sig)
+{
+    if (sig == SIGINT)
+    {
+        printf("\033[K\n");
+        rl_on_new_line();
+        rl_replace_line("", 0);
+    }
+}
+
+void    signals(int sig)
+{
+    if (sig == SIGINT)
+    {
+        rl_on_new_line();
+        rl_redisplay();
+        rl_replace_line("", 0);
+        printf("\033[K\n");
+        rl_on_new_line();
+        rl_redisplay();
+        rl_replace_line("", 0);
+    }
 }

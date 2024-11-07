@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 17:53:59 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/07 18:31:35 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	getprompt(t_data *data)
 
 	if (getcwd(direc, sizeof(direc)) == NULL)
 		return (EXIT_FAILURE);
-	direcf = ft_strjoin(direc, " %");
+	direcf = ft_strjoin(direc, " % ");
 	if (direcf == NULL)
 		return (EXIT_FAILURE);
 	data->prompt = readline(direcf);
@@ -38,12 +38,13 @@ int	minishell(t_data *data, char **env)
 	draw();
 	while (1)
 	{
-		
+		signal(SIGINT, signals);
+		signal(SIGQUIT, SIG_IGN);
+		if (getprompt(data) == EXIT_FAILURE)
+			exit (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }
-
-
 
 int main(int argc, char **argv, char **envp)
 {
