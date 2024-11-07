@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 18:59:39 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/07 19:22:40 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int main(int argc, char **argv, char **envp)
 	if (data == NULL)
 		return (EXIT_FAILURE);
 	init_struct(data);
+	get_env(data, envp, 0);
 	if (minishell(data, envp) == EXIT_FAILURE)
 		return (free_all(data), EXIT_FAILURE);
 	return (free_all(data), EXIT_SUCCESS);
