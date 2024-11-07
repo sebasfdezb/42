@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 13:06:57 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/07 13:13:26 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	minishell(t_data *data, char **env)
 {
+	draw();
 	while (1)
 	{
 		
@@ -33,7 +34,6 @@ int main(int argc, char **argv, char **envp)
 	if (data == NULL)
 		return (EXIT_FAILURE);
 	init_struct(data);
-	draw();
 	if (minishell(data, envp) == EXIT_FAILURE)
 		return (free_all(data), EXIT_FAILURE);
 	return (free_all(data), EXIT_SUCCESS);
