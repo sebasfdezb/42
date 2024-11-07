@@ -6,11 +6,32 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 13:13:26 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:53:59 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	getprompt(t_data *data)
+{
+	char	direc[500];
+	char	*direcf;
+
+	if (getcwd(direc, sizeof(direc)) == NULL)
+		return (EXIT_FAILURE);
+	direcf = ft_strjoin(direc, " %");
+	if (direcf == NULL)
+		return (EXIT_FAILURE);
+	data->prompt = readline(direcf);
+	free(direcf);
+	direcf = NULL;
+	if (!data->prompt)
+	{
+		printf("exit\n");
+		exit(EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
 
 int	minishell(t_data *data, char **env)
 {
@@ -21,6 +42,8 @@ int	minishell(t_data *data, char **env)
 	}
 	return (EXIT_SUCCESS);
 }
+
+
 
 int main(int argc, char **argv, char **envp)
 {

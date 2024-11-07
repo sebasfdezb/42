@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 13:09:35 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:45:07 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 typedef struct s_data
 {
-
+	char	*prompt;
 }t_data;
 
 #endif
