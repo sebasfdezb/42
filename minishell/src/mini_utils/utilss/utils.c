@@ -6,11 +6,11 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:43:24 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 18:44:52 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:36:47 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 void	draw(void)
 {

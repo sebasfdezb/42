@@ -6,11 +6,16 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 19:22:40 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/11 17:43:11 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	init_struct(t_data *data)
+{
+	data->prompt = NULL;
+}
 
 int	getprompt(t_data *data)
 {
@@ -42,6 +47,10 @@ int	minishell(t_data *data, char **env)
 		signal(SIGQUIT, SIG_IGN);
 		if (getprompt(data) == EXIT_FAILURE)
 			exit (EXIT_FAILURE);
+		if (ft_strncmp(data->prompt, "/0", 1) == EXIT_FAILURE)
+			add_history(data->prompt);
+		if (input(data, env) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
 }

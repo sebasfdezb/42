@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/07 19:22:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/11 18:11:06 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,21 @@
 # include <signal.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+
 typedef struct s_data
 {
 	char	*prompt;
+	t_envp	*envp;
 }t_data;
+
+typedef	struct s_envp
+{
+	char			*name;
+	char			*content;
+	int				ind;
+	struct s_env	*next;
+}t_envp;
+
 
 //UTILS
 void	draw(void);
