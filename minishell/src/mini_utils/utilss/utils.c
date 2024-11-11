@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:43:24 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/11 17:36:47 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:13:50 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,44 @@
 void	draw(void)
 {
 	printf(" __  __ _____ _   _  _____ _____ _    _  _____ _    _ _      _\n");
-    printf("|  \\/ |_   _| \\ | |_   _|_   _| |  | |/ ____| |  | | |    | |\n");
-    printf("| \\  /| | | |  \\| | | |   | | | |  | | (___ | |  | | |    | |\n");
-    printf("| |\\/|| | | | . `  | | |   | | | |  | |\\___ \\| |  | | |    | |\n");
-    printf("| |  | |_| |_| |\\  |_| |_ _| |_| |__| |____) | |__| | |____| |____\n");
-    printf("|_|  |_|_____|_| \\_|_____|_____(_)____/|_____/ \\____/|______|______|\n");
-    printf("\n");
+	printf("|  \\/ |_   _| \\ | |_   _|_   _| |  | |/ ____| |  | | |    | |\n");
+	printf("| \\  /| | | |  \\| | | |   | | | |  | | (___ | |  | | |    | |\n");
+	printf("| |\\/|| | | | . `  | | |   | | | |  | |\\___ \\| |  | | |    |\n");
+	printf("| |  | |_| |_| |\\  |_| |_ _| |_| |__| |____) | |__| ||____| |_\n");
+	printf("|_|  |_|_____|_| \\_|_____|_____(_)____/|_____/ \\____|______|_\n");
+	printf("\n");
 }
 
-void    sig_ctrlslash(int sig)
+void	sig_ctrlslash(int sig)
 {
-    if (sig == SIGQUIT)
-    {
-        printf("Quit: 3\n");
-        rl_on_new_line();
-        rl_replace_line("", 0);
-    }
+	if (sig == SIGQUIT)
+	{
+		printf("Quit: 3\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+	}
 }
 
-void    sig_ctrlc(int sig)
+void	sig_ctrlc(int sig)
 {
-    if (sig == SIGINT)
-    {
-        printf("\033[K\n");
-        rl_on_new_line();
-        rl_replace_line("", 0);
-    }
+	if (sig == SIGINT)
+	{
+		printf("\033[K\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+	}
 }
 
-void    signals(int sig)
+void	signals(int sig)
 {
-    if (sig == SIGINT)
-    {
-        rl_on_new_line();
-        rl_redisplay();
-        rl_replace_line("", 0);
-        printf("\033[K\n");
-        rl_on_new_line();
-        rl_redisplay();
-        rl_replace_line("", 0);
-    }
+	if (sig == SIGINT)
+	{
+		rl_on_new_line();
+		rl_redisplay();
+		rl_replace_line("", 0);
+		printf("\033[K\n");
+		rl_on_new_line();
+		rl_redisplay();
+		rl_replace_line("", 0);
+	}
 }

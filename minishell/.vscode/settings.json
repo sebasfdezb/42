@@ -61,6 +61,9 @@
     "minishell.h": "c",
     "unistd.h": "c",
     "stdio.h": "c",
-    "libft.h": "c"
+    "libft.h": "c",
+    "*.tcc": "c",
+    "random": "c",
+    "type_traits": "c"
   }
 }

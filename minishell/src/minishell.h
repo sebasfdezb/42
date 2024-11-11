@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/11 18:11:06 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/11 19:04:45 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ typedef	struct s_envp
 	int				ind;
 	struct s_env	*next;
 }t_envp;
-
 
 //UTILS
 void	draw(void);
