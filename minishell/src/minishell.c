@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/11 19:04:39 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:17:21 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,16 @@
 void	init_struct(t_data *data)
 {
 	data->prompt = NULL;
+}
+
+int	inputs(t_data *data, char **envp)
+{
+	if (lexer(data->prompt) == EXIT_FAILURE)
+		return (printf("Error: Unclosed Quotes\n"), EXIT_SUCCESS);
+	if (get_path(data) == EXIT_FAILURE)
+		return (EXIT_SUCCESS);
+	if (get_cmds(data) == EXIT_FAILURE)
+		return (EXIT_SUCCESS);
 }
 
 int	getprompt(t_data *data)
@@ -49,7 +59,7 @@ int	minishell(t_data *data, char **env)
 			exit (EXIT_FAILURE);
 		if (ft_strncmp(data->prompt, "/0", 1) == EXIT_FAILURE)
 			add_history(data->prompt);
-		if (input(data, env) == EXIT_FAILURE)
+		if (inputs(data, env) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);

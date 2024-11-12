@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/11 19:52:14 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:25:32 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ typedef struct s_data
 {
 	char	*prompt;
 	t_envp	*envp;
+	char	**path;
+	char	**cmd;
 }t_data;
 
 typedef	struct s_envp
@@ -47,6 +49,9 @@ int		size_envp(t_envp *lst);
 void    signals(int sig);
 void    sig_ctrlc(int sig);
 void    signals(int sig);
+
+//free
+void	free_split(char **tmp);
 
 
 #endif

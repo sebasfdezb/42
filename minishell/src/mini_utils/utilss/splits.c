@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer.c                                            :+:      :+:    :+:   */
+/*   splits.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/12 16:39:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/12 16:50:47 by sebferna         ###   ########.fr       */
+/*   Created: 2024/11/12 17:07:11 by sebferna          #+#    #+#             */
+/*   Updated: 2024/11/12 17:19:42 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	lexer(char	*str)
+int	get_path(t_data *d)
 {
-	int	i;
-	int	qsimple;
-	int	qdoubles;
+	t_envp	*tmp;
 
-	i = 0;
-	qsimple = 0;
-	qdoubles = 0;
-	while (str && str[i])
+	tmp = d->envp;
+	if (!d->path)
 	{
-		if (str[i] == '\'' && !qdoubles)
-			qsimple = 1;
-		else if (str[i] == '\"' && !qsimple)
-			qdoubles = 1;
-		i++;
+		free_split(d->path);
+		d->path = NULL;
 	}
-	if (qsimple || qdoubles)
-		return (EXIT_FAILURE);
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->name, "PATH", 4) == 0)
+		{
+			d->path = ft_split(tmp->content + 1, ':');
+			break ;
+		}
+		tmp = tmp->next;
+	}
 	return (EXIT_SUCCESS);
 }
