@@ -6,15 +6,60 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/12 18:09:21 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:27:38 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+static int	size_cmd(char const *str, char c, int j)
+{
+	int		size;
+	char	s;
+
+	size = 0;
+	while (str[j] != '/0' && str[j] != c)
+	{
+		if (str[j] == '\'' || str[j] == '\"')
+		{
+			s = str[j];
+			j++;
+			size++;
+			while (str[j] != s)
+			{
+				j++;
+				size++;
+			}
+		}
+		size++;
+		j++;
+	}
+	return (size);
+}
+
 int	counts(char const **s1, char c, char *s2)
 {
-	
+	if (**s1 == c)
+		return (printf("Error: Syntax token `|'\n"), -2);
+	while (**s1 != c && **s1 != '\0')
+	{
+		if ((**s1 == '<' || **s1 == '>') && (*s1)++)
+		{
+			while (**s1 == ' ')
+				(*s1)++;
+			if (**s1 == c)
+				return (printf("Error: Syntax token `|'\n"));
+		}
+		if (**s1 == '\'' || **s1 == '\"')
+		{
+			*s2 = **s1;
+			(*s1)++;
+			while (**s1 != *s2)
+				(*s1)++;
+		}
+		(*s1)++;
+	}
+	return (EXIT_SUCCESS);
 }
 
 static int	count_cmd(char const *str, char c, int i)
@@ -32,7 +77,7 @@ static int	count_cmd(char const *str, char c, int i)
 			while (str[j] == ' ')
 				j++;
 			if (str[j] == c || str[j] == '\0')
-				return (printf("Error: Pipes\n"));
+				return (printf("Error: Syntax Pipes\n"));
 		}
 		i++;
 	}
