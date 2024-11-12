@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/12 17:17:21 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:33:11 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	inputs(t_data *data, char **envp)
 		return (EXIT_SUCCESS);
 	if (get_cmds(data) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
+	expand(data);
 }
 
 int	getprompt(t_data *data)

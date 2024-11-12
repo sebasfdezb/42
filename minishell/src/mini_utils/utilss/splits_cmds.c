@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/12 18:27:38 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:38:51 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ char	**splits_cmd(char const *str, char c)
 	return (s);
 }
 
-int	get_path(t_data *d)
+int	get_cmds(t_data *d)
 {
 	int	i;
 
@@ -127,4 +127,3 @@ int	get_path(t_data *d)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
-

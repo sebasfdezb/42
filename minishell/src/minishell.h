@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/12 17:25:32 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/12 18:36:39 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ typedef struct s_data
 	t_envp	*envp;
 	char	**path;
 	char	**cmd;
-}t_data;
+}	t_data;
 
-typedef	struct s_envp
+typedef struct s_envp
 {
 	char			*name;
 	char			*content;
 	int				ind;
 	struct s_env	*next;
-}t_envp;
+}	t_envp;
 
 //UTILS
 void	draw(void);
@@ -44,14 +44,16 @@ void	draw(void);
 void	set_envp_index(t_data *data);
 int		exp_cmp(const char *s1, const char *s2);
 int		size_envp(t_envp *lst);
-
 //SIGNALS
-void    signals(int sig);
-void    sig_ctrlc(int sig);
-void    signals(int sig);
-
+void	signals(int sig);
+void	sig_ctrlc(int sig);
+void	signals(int sig);
 //free
 void	free_split(char **tmp);
+//splits
+int		get_path(t_data *d);
+int		get_cmds(t_data *d);
 
+int		lexer(char	*str);
 
 #endif
