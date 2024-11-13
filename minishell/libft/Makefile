@@ -44,6 +44,8 @@ SRCBONUS = ft_lstnew_bonus.c\
 			ft_lstclear_bonus.c\
 			ft_lstiter_bonus.c\
 			ft_lstmap_bonus.c\
+			get_next_line_bonus.c\
+			get_next_line_utils_bonus
 
 OBJECTS = $(SRC:.c=.o)
 OBJECTSB = $(SRCBONUS:.c=.o)
