@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 19:56:52 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/13 20:01:20 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,9 @@ void	free_split(char **tmp);
 //splits
 int		get_path(t_data *d);
 int		get_cmds(t_data *d);
-
+//lexer
 int		lexer(char	*str);
+//expander
+void	expand(t_data *d);
 
 #endif
