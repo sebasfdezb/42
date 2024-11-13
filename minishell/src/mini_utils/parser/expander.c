@@ -6,15 +6,63 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:33:28 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 19:06:35 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/13 19:56:13 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
+static char	*envp_content(t_data *d, char *str)
+{
+	char	*status;
+	char	*next;
+	t_envp	*tmp;
+
+	tmp = d->envp;
+	if (ft_strncmp(str, "?", 1) == EXIT_SUCCESS)
+	{
+		status = ft_itoa(g_last_status);
+		return (status);
+	}
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->name, str, ft_strlen(tmp->name)) == EXIT_SUCCESS)
+		{
+			next = ft_substr(tmp->content, 1, ft_strlen(tmp->content) - 1);
+			return (next);
+		}
+		next = tmp->next;
+	}
+	return (ft_strdup(""));
+}
+
 void	next_expand(t_data *d, int *i, int *flag, char **expand)
 {
-	
+	if (!*flag && d->cmd[d->i][d->j] != '~')
+	{
+		*i = d->j;
+		while ((d->cmd[d->i][d->j] != '$' || *flag)
+				&& d->cmd[d->i][d->j] && d->cmd[d->i][d->j] != '~')
+		{
+			if (d->cmd[d->i][d->j] == '\'')
+				*flag = !*flag;
+			d->j++;
+		}
+		d->aux = ft_substr(d->cmd[d->i], *i, d->j - *i);
+		*expand = ft_strjoin_gnl(*expand, d->aux);
+	}
+	else
+	{
+		*i = d->j;
+		while ((d->cmd[d->i][d->j] != '$' || *flag)
+				&& d->cmd[d->i][d->j] && ++(d->j))
+		{
+			if (d->cmd[d->i][d->j] == '\'')
+				*flag = !*flag;
+		}
+		d->aux = ft_substr(d->cmd[d->i], *i, d->j - *i);
+		*expand = ft_strjoin_gnl(*expand, d->aux);
+	}
 }
 
 static void	prime_expand(t_data *d, int *i, int *flag, char **expand)
@@ -90,5 +138,12 @@ void	expand(t_data *d)
 			dollar_expand(d, &i, &flag, &expand);
 			prime_expand(d, &i, &flag, &expand);
 		}
+		free(d->cmd[d->i]);
+		d->cmd[d->i] = NULL;
+		d->cmd[d->i] = ft_strdup(expand);
+		free(expand);
+		expand = NULL;
+		d->i++;
 	}
+	d->i = 0;
 }

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 19:04:48 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/13 19:56:52 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <signal.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+
+int	g_last_status;
 
 typedef struct s_data
 {
