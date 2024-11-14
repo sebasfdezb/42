@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/14 17:57:44 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:27:34 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_data
 	char		*fileout;
 	char		*filein;
 	t_parser	*node;
+	int			flag_hered;
+	int			flag_token;
 }	t_data;
 
 typedef struct s_envp

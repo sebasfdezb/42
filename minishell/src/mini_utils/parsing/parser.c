@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:00:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/14 18:03:51 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:19:59 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,15 @@
 
 int	get_tokens(t_data *data, int *i, int *j, t_parser **node)
 {
-	
+	while (data->cmd[*i][*j] == '<' || data->cmd[*i][*j] == '>')
+	{
+		if ((*node)->filein != 0 && data->cmd[*i][*j] == '<')
+			close((*node)->filein);
+		if ((*node)->fileout != 1 && data->cmd[*i][*j] == '>')
+			close((*node)->fileout);
+		if (get_token_filein(data, i, j, node) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
+	}
 }
 
 int	parser(t_data *data, int i, int j)
