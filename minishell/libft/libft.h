@@ -6,18 +6,19 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:12:42 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 18:43:45 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:32:33 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
 
 # ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+#  define BUFFER_SIZE 42
 # endif
 
 typedef struct s_list

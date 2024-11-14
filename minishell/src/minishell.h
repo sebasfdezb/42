@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 20:01:20 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:57:44 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,16 @@ int	g_last_status;
 
 typedef struct s_data
 {
-	char	*prompt;
-	t_envp	*envp;
-	char	**path;
-	char	**cmd;
-	int		i;
-	int		j;
-	char	**aux;
+	char		*prompt;
+	t_envp		*envp;
+	char		**path;
+	char		**cmd;
+	int			i;
+	int			j;
+	char		**aux;
+	char		*fileout;
+	char		*filein;
+	t_parser	*node;
 }	t_data;
 
 typedef struct s_envp
@@ -41,6 +44,13 @@ typedef struct s_envp
 	int				ind;
 	struct s_env	*next;
 }	t_envp;
+
+typedef struct s_paser
+{
+	int	filein;
+	int	fileout;
+}	t_parser;
+
 
 //UTILS
 void	draw(void);

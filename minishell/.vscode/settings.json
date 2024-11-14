@@ -64,6 +64,7 @@
     "libft.h": "c",
     "*.tcc": "c",
     "random": "c",
-    "type_traits": "c"
+    "type_traits": "c",
+    "stdlib.h": "c"
   }
 }
