@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 19:59:49 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/14 20:06:05 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	inputs(t_data *data, char **envp)
 	if (get_cmds(data) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
 	expand(data);
-	if (parser(data, 0, 0) == EXIT_FAILURE)
+	if (parsing(data, 0, 0) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
 }
 

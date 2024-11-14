@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:00:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/14 18:19:59 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/14 20:05:57 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_tokens(t_data *data, int *i, int *j, t_parser **node)
 	}
 }
 
-int	parser(t_data *data, int i, int j)
+int	parsing(t_data *data, int i, int j)
 {
 	while (data->cmd[i][j] != NULL)
 	{
