@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 18:13:51 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:03:31 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 void	init_struct(t_data *data)
 {
 	data->prompt = NULL;
+	data->path = NULL;
+	data->i = 0;
+	data->j = 0;
 }
 
 int	inputs(t_data *data, char **envp)

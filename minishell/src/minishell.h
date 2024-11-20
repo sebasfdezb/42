@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 18:11:50 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:01:28 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <signal.h>
 # include <readline/history.h>
 # include <readline/readline.h>
+# include <dirent.h>
 
 int	g_last_status;
 
