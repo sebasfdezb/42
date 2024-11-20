@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 17:45:02 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/20 18:11:50 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ typedef struct s_data
 	int			flag_hered;
 	int			flag_token;
 	int			flag_add;
+	int			size;
+	int			a;
+	t_list		*nodes;
+	int			flag_pipe;
 }	t_data;
 
 typedef struct s_envp
@@ -50,8 +54,10 @@ typedef struct s_envp
 
 typedef struct s_paser
 {
-	int	filein;
-	int	fileout;
+	int		filein;
+	int		fileout;
+	char	**all_cmd;
+	char	*route;
 }	t_parser;
 
 //UTILS

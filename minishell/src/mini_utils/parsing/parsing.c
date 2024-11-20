@@ -6,13 +6,18 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:00:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/14 20:05:57 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/20 17:58:10 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	get_tokens(t_data *data, int *i, int *j, t_parser **node)
+int	get_commd(t_data *data, t_parser **node, int *i, int *j)
+{
+	
+}
+
+int	get_tokens(t_data *data, t_parser **node, int *i, int *j)
 {
 	while (data->cmd[*i][*j] == '<' || data->cmd[*i][*j] == '>')
 	{
@@ -22,7 +27,11 @@ int	get_tokens(t_data *data, int *i, int *j, t_parser **node)
 			close((*node)->fileout);
 		if (get_token_filein(data, i, j, node) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
+		if (get_token_fileout(data, i, j, node) == EXIT_FAILURE)
+			return (EXIT_FAILURE);
 	}
+	data->size = 0;
+	data->a = -1;
 }
 
 int	parsing(t_data *data, int i, int j)
@@ -39,8 +48,12 @@ int	parsing(t_data *data, int i, int j)
 			data->node->filein = 0;
 			while (data->cmd[i][j] == ' ')
 				j++;
-			if (get_tokens(data, &i, &j, &data->node) == EXIT_FAILURE)
+			if (get_tokens(data, &data->node, &i, &j) == EXIT_FAILURE)
 				return (free_parser(data->node), EXIT_FAILURE);
+			if (get_commd(data, &data->node, &i, &j) == EXIT_FAILURE)
+				return (free_t_parser(data->node), EXIT_FAILURE);
+			if (get_tokens(data, &data->node, &i, &j) == EXIT_FAILURE)
+				return (free_t_parser(data->node), EXIT_FAILURE);
 		}
 	}
 }
