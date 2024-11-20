@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:08:20 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 20:01:29 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:10:54 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	get_route(t_data *data, t_parser *node, int i)
 
 	if (node->all_cmd[0] == NULL)
 		return (printf("error"), EXIT_FAILURE);
-	if (check_builtin(node) == EXIT_FAILURE)
+	if (check_builts(node) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
 	while (data->path != NULL && data->path[++i] != NULL)
 	{

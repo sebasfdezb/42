@@ -6,11 +6,30 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:39:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/12 16:50:47 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/20 20:12:42 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	check_builts(t_parser *node)
+{
+	if (node->all_cmd[0] && ft_strncmp(node->all_cmd[0], "cd\0", 3) == 0)
+		return (node->route = ft_strdup("b"), EXIT_FAILURE);
+	if (node->all_cmd[0] && ft_strncmp(node->all_cmd[0], "echo\0", 5) == 0)
+		return (node->route = ft_strdup("b"), EXIT_FAILURE);
+	if (node->all_cmd[0] && ft_strncmp(node->all_cmd[0], "env\0", 4) == 0)
+		return (node->route = ft_strdup("b"), EXIT_FAILURE);
+	if (node->all_cmd[0] && ft_strncmp(node->all_cmd[0], "pwd\0", 4) == 0)
+		return (node->route = ft_strdup("b"), EXIT_FAILURE);
+	if (node->all_cmd[0] && ft_strncmp(node->all_cmd[0], "unset\0", 6) == 0)
+		return (node->route = ft_strdup("b"), EXIT_FAILURE);
+	if (node->all_cmd[0] && ft_strncmp(node->all_cmd[0], "export\0", 7) == 0)
+		return (node->route = ft_strdup("b"), EXIT_FAILURE);
+	if (node->all_cmd[0] && ft_strncmp(node->all_cmd[0], "exit\0", 5) == 0)
+		return (node->route = ft_strdup("b"), EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
 
 int	lexer(char	*str)
 {
