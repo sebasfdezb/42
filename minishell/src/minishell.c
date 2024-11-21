@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 20:03:31 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:53:24 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	minishell(t_data *data, char **env)
 		signal(SIGQUIT, SIG_IGN);
 		if (getprompt(data) == EXIT_FAILURE)
 			exit (EXIT_FAILURE);
-		if (ft_strncmp(data->prompt, "/0", 1) == EXIT_FAILURE)
+		if (ft_strncmp(data->prompt, "\0", 1) == EXIT_FAILURE)
 			add_history(data->prompt);
 		if (inputs(data, env) == EXIT_FAILURE)
 			return (EXIT_FAILURE);

@@ -6,11 +6,24 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:16:51 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 19:56:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:31:49 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	size_envp(t_envp *lst)
+{
+	int	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
+}
 
 static t_envp	*get_first(t_data *data)
 {
