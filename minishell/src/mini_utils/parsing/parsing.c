@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:00:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 17:58:10 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:52:35 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	get_tokens(t_data *data, t_parser **node, int *i, int *j)
 	}
 	data->size = 0;
 	data->a = -1;
+	return (EXIT_SUCCESS);
 }
 
 int	parsing(t_data *data, int i, int j)
