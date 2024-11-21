@@ -65,6 +65,8 @@
     "*.tcc": "c",
     "random": "c",
     "type_traits": "c",
-    "stdlib.h": "c"
+    "stdlib.h": "c",
+    "stat.h": "c",
+    "fcntl.h": "c"
   }
 }

@@ -6,13 +6,36 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/21 18:26:34 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/21 18:51:52 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	get_last_token(t_data *d, t_parser *node, int *i, int *j)
+int	get_last_token_util(t_data *data, t_parser **node, int *i, int *j)
+{
+	if (data->flag_hered == 0 && data->flag_token == 1)
+		(*node)->filein = open(data->filein, O_RDONLY);
+	if (data->flag_add == 0 && data->flag_token == 2)
+		(*node)->fileout = open(data->fileout, O_WRONLY | O_CREAT | O_TRUNC,
+				0644);
+	if (data->flag_hered == 1 && data->flag_token == 1)
+		here_doc(data, node, NULL);
+	if (data->flag_add == 1 && data->flag_token == 2)
+		(*node)->fileout = open(data->fileout, O_WRONLY | O_CREAT | O_APPEND,
+				0644);
+	if ((*node)->filein == -1 || (*node)->fileout == -1)
+		return (g_last_status = 1, printf("error"), EXIT_FAILURE);
+	if (data->flag_token == 1)
+		free(data->filein);
+	if (data->flag_token == 2)
+		free(data->fileout);
+	while (data->cmd[*i][*j] == ' ')
+		(*j)++;
+	return (EXIT_SUCCESS);
+}
+
+int	get_last_token(t_data *d, t_parser **node, int *i, int *j)
 {
 	d->size = 0;
 	d->a = 0;
