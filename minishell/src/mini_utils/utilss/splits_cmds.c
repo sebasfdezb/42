@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 19:56:46 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:20:30 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,19 +111,4 @@ char	**splits_cmd(char const *str, char c)
 	}
 	s[i] = 0;
 	return (s);
-}
-
-int	get_cmds(t_data *d)
-{
-	int	i;
-
-	i = 0;
-	while (d->prompt[i] == ' ' || d->prompt[i] == '	')
-		i++;
-	if (d->prompt[i] == '\0')
-		return (EXIT_FAILURE);
-	d->cmd = splits_cmd(d->prompt, '|');
-	if (!d->cmd)
-		return (EXIT_FAILURE);
-	return (EXIT_SUCCESS);
 }

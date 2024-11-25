@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:00:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 16:52:56 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:20:08 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,31 @@ int	input_files(t_data *data, t_parser **node, int *i, int *j)
 
 int	process_command(t_data *data, t_parser **node, int *i)
 {
-	
+	data->str = ft_calloc((data->size) + 1, sizeof(char));
+	data->b = 0;
+	while (data->cmd[*i][data->a] != '<' && data->cmd[*i][data->a] != '>' &&
+			data->cmd[*i][data->a] != '\0')
+	{
+		if (data->cmd[*i][data->a] == data->quote)
+		{
+			data->str[data->b] = data->cmd[*i][data->a];
+			(data->a)++;
+			(data->b)++;
+			while (data->cmd[*i][data->a] != data->quote)
+			{
+				data->str[data->b] = data->cmd[*i][data->a];
+				(data->a)++;
+				(data->b)++;
+			}
+		}
+		data->str[data->b] = data->cmd[*i][data->a];
+		(data->a)++;
+		(data->b)++;
+	}
+	(*node)->all_cmd = get_words(data, data->str, ' ', -1);
+	if (!(*node)->all_cmd)
+		return (free(data->str), data->str = NULL, EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }
 
 int	get_command(t_data *data, t_parser **node, int *i, int *j)
