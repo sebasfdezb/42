@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:07:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 17:20:48 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:38:06 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**get_words(t_data *data, char const *str, char c, int i)
 	int		j;
 
 	data->d = 0;
-	data->f = 0;
+	data->flag = 0;
 	data->quote = '\0';
 	j = count_words(data, str, c, 0);
 	s = (char **)malloc(sizeof(char *) * (j + 1));
@@ -26,7 +26,7 @@ char	**get_words(t_data *data, char const *str, char c, int i)
 		return (0);
 	while (i < j)
 	{
-		data->f = 0;
+		data->flag = 0;
 		data->quote = '\0';
 		data->size = 0;
 		data->size = size_words(data, str, c, &data->d);

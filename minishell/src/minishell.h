@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 17:11:35 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:37:55 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ typedef struct s_data
 	char		*str;
 	int			b;
 	int			d;
-	int			f;
+	int			flag;
 }	t_data;
 
 typedef struct s_envp
