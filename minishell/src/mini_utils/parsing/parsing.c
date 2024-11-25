@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:00:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 17:20:08 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/25 18:25:37 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,8 @@ int	parsing(t_data *data, int i, int j)
 			if (input_files(data, &data->node, &i, &j) == EXIT_FAILURE)
 				return (free_t_parser(data->node), EXIT_FAILURE);
 		}
+		ft_lstadd_back(&data->nodes, ft_lstnew(data->node));
+		i++;
 	}
+	return (EXIT_SUCCESS);
 }
