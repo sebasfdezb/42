@@ -6,11 +6,24 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:44:28 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/21 11:31:45 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:19:20 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	ex_envp(t_data *data, int fd)
+{
+	t_envp	*tmp;
+
+	tmp = data->envp;
+	while (tmp != NULL)
+	{
+		if ((tmp->content[1] != '"') && (tmp->content[2] != '"'))
+			ft_printf(fd, "%s%s\n", tmp->name, tmp->content);
+		tmp = tmp->next;
+	}
+}
 
 void	lst_addenv_back(t_envp **lst, t_envp *new)
 {
