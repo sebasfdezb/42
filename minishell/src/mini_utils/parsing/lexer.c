@@ -6,11 +6,36 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:39:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 20:12:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:13:29 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	check_path(t_data *data)
+{
+	t_envp	*tmp;
+
+	tmp = data->envp;
+	while (tmp)
+	{
+		if (!ft_strncmp(tmp->name, "PATH", 4))
+		{
+			data->flag_path = 1;
+			return ;
+		}
+		else
+		{
+			data->flag_path = 0;
+			if (data->path != NULL)
+			{
+				free_split(data->path);
+				data->path = NULL;
+			}
+		}
+		tmp = tmp->next;
+	}
+}
 
 int	check_builts(t_parser *node)
 {
