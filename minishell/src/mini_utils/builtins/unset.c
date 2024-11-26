@@ -6,11 +6,21 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:48:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 19:06:54 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/26 19:14:57 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	free_envp_node(t_envp *remove)
+{
+	free(remove->name);
+	if (remove->content != NULL)
+		free(remove->content);
+	free(remove);
+	remove = NULL;
+	g_last_status = 0;
+}
 
 void	ex_unset(t_data *data, char *str)
 {
