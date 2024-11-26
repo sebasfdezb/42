@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:12:42 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/14 17:32:33 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/26 18:10:07 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <stdarg.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
@@ -75,5 +77,13 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 //getnextline
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *str1, char *str2);
+//PRINTF
+int		ft_printf(int fd, char const *str, ...);
+int		ft_printchar(char c, int fd);
+int		ft_printdec(long long int n, int fd);
+int		ft_printhexa(unsigned long long n, char c, int fd);
+int		ft_printptr(unsigned long long ptr, int fd);
+int		ft_printstr(char *str, int fd);
+int		ft_printunsigned(unsigned long long int n, int fd);
 
 #endif

@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   ft_printchar.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/26 17:56:51 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 18:06:28 by sebferna         ###   ########.fr       */
+/*   Created: 2023/12/18 12:41:23 by sebferna          #+#    #+#             */
+/*   Updated: 2024/11/26 18:07:55 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "libft.h"
 
-void	ex_pwd(int fd)
+int	ft_printchar(char c, int fd)
 {
-	char	currdir[500];
-
-	getcwd(currdir, 500);
-	ft_printf(fd, "%s\n", currdir);
+	write(fd, &c, 1);
+	return (1);
 }
