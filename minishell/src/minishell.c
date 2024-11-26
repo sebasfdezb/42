@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/21 11:53:24 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:06:04 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	init_struct(t_data *data)
 	data->path = NULL;
 	data->i = 0;
 	data->j = 0;
+	data->flag = 0;
+	data->d = 0;
+	data->dup_stdin = dup(STDIN_FILENO);
 }
 
 int	inputs(t_data *data, char **envp)
@@ -32,6 +35,8 @@ int	inputs(t_data *data, char **envp)
 	if (parsing(data, 0, 0) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
 	if (process_route(data, 0) == EXIT_FAILURE)
+		return (EXIT_SUCCESS);
+	if (execute(data, (t_parser *)data->nodes->content), envp, data->nodes == 1)
 		return (EXIT_SUCCESS);
 }
 

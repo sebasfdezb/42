@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 18:34:17 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:08:12 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int		size_envp(t_envp *lst);
 //SIGNALS
 void	signals(int sig);
 void	sig_ctrlc(int sig);
-void	signals(int sig);
+void	sig_ctrlslash(int sig);
 //free
 void	free_split(char **tmp);
 //splits
