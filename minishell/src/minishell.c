@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/28 18:24:25 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:28:21 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	inputs(t_data *data, char **envp)
 	expand(data);
 	if (parsing(data, 0, 0) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
+	if (data->nodes == NULL)
 	if (process_route(data, 0) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
 	if (execute(data, (t_parser *)data->nodes->content), envp, data->nodes == 1)
