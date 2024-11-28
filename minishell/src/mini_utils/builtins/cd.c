@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:54:37 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/28 18:11:30 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:18:55 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	home_path(t_data *data, char *str)
 		if (ft_strncmp(tmp->name, str, ft_strlen(str)) == EXIT_SUCCESS)
 		{
 			cnt = ft_split(tmp->content, "=");
-			data->tmp_envp = cnt[0];
+			data->aux = cnt[0];
 			break ;
 		}
 		tmp = tmp->next;
@@ -77,7 +77,7 @@ void	update_cd(t_data *data)
 {
 	up_prevdir(data, NULL);
 	path_home(data, "HOME\0");
-	chdir(data->tmp_envp);
+	chdir(data->aux);
 	up_currdir(data);
 	g_last_status = 0;
 }
