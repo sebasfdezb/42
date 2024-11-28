@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 19:12:09 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:06:56 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data
 	int			dup_stdin;
 	t_envp		*tmp_envp;
 	int			flag_path;
+	char		*error_cd;
 }	t_data;
 
 typedef struct s_envp
