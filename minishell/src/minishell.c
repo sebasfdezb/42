@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 17:06:04 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/11/28 18:24:25 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ int	inputs(t_data *data, char **envp)
 		return (EXIT_SUCCESS);
 	if (execute(data, (t_parser *)data->nodes->content), envp, data->nodes == 1)
 		return (EXIT_SUCCESS);
+	unlink("here_doc.tmp");
+	return (EXIT_SUCCESS);
 }
 
 int	getprompt(t_data *data)
