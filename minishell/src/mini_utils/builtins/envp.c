@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:44:28 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 18:19:20 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:35:14 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ void	get_envp(t_data *data, char **envp, int i)
 	{
 		tmp = ft_calloc(1, sizeof(t_envp));
 		if (!tmp)
-			return (EXIT_FAILURE);
-		curr = ft_split(envp[i], "=");
+			exit (EXIT_FAILURE);
+		curr = ft_split(envp[i], '=');
 		tmp->name = ft_strdup(curr[0]);
 		if (curr[1] == NULL)
 			tmp->content = ft_strdup("=");

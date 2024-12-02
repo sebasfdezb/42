@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:10:18 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 18:00:20 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:42:30 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	handle_child_pipe(t_data *d, t_parser *node, char **envp, t_list *tmp)
 	handle_child_command(d, node, envp, tmp);
 }
 
-void	ex_routepipes(t_data *data, t_parser *node, char **envp, t_list *tmp)
+void	ex_routepipes(t_data *data, t_parser *n, char **envp, t_list *tmp)
 {
 	pid_t	pid;
 
@@ -111,9 +111,9 @@ void	ex_routepipes(t_data *data, t_parser *node, char **envp, t_list *tmp)
 	if (pid == 0)
 	{
 		if (tmp->next != NULL)
-			handle_child_pipe(data, node, envp, tmp);
+			handle_child_pipe(data, n, envp, tmp);
 		else
-			process_final_pipe(data, node, envp);
+			process_final_pipe(data, n, envp);
 	}
 	if (tmp->next && ((t_parser *)(tmp->next->content))->filein == 0)
 		((t_parser *)(tmp->next->content))->filein = data->fd[0];
@@ -121,5 +121,5 @@ void	ex_routepipes(t_data *data, t_parser *node, char **envp, t_list *tmp)
 		close(data->fd[0]);
 	close(data->fd[1]);
 	waitpid(pid, NULL, 0);
-	check_cargs(node);
+	check_cargs(n);
 }

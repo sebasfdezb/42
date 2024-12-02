@@ -6,7 +6,7 @@
 #    By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:47:50 by sebferna          #+#    #+#              #
-#    Updated: 2024/12/02 18:05:43 by sebferna         ###   ########.fr        #
+#    Updated: 2024/12/02 18:27:31 by sebferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC = src/minishell.c\
 		src/mini_utils/exec/pipe.c\
 		src/mini_utils/exec/routes.c\
 		src/mini_utils/free/free.c\
+		src/mini_utils/free/free_all.c\
 		src/mini_utils/parsing/expander.c\
 		src/mini_utils/parsing/here_doc.c\
 		src/mini_utils/parsing/lexer.c\

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 17:08:40 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/02 18:43:31 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	inputs(t_data *data, char **envp)
 		return (EXIT_SUCCESS);
 	if (process_route(data, 0) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
-	if (execute(data, (t_parser *)data->nodes->content), envp, data->nodes == 1)
+	if (execute(data, (t_parser *)data->nodes->content, envp, data->nodes) == 1)
 		return (EXIT_SUCCESS);
 	unlink("here_doc.tmp");
 	return (EXIT_SUCCESS);
@@ -106,7 +106,7 @@ int	main(int argc, char **argv, char **envp)
 	if (data == NULL)
 		return (EXIT_FAILURE);
 	init_struct(data);
-	get_env(data, envp, 0);
+	get_envp(data, envp, 0);
 	if (minishell(data, envp) == EXIT_FAILURE)
 		return (free_all(data), EXIT_FAILURE);
 	return (free_all(data), EXIT_SUCCESS);
