@@ -6,11 +6,38 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:39:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 19:13:29 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:07:51 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	check_node(t_data *data, char **str)
+{
+	t_envp	*tmp;
+
+	tmp = data->envp;
+	while (tmp)
+	{
+		if (ft_strncmp(tmp->name, str[0], ft_strlen(str[0])) == EXIT_SUCCESS)
+		{
+			if (tmp->content)
+			{
+				free(tmp->content);
+				if (str[1] == NULL)
+					tmp->content = ft_strjoin("=", "\"\"");
+				else
+					tmp->content = ft_strjoin("=", str[1]);
+			}
+			else
+				tmp->content = ft_strdup(str[1]);
+			return (EXIT_SUCCESS);
+		}
+		else
+			tmp = tmp->next;
+	}
+	return (EXIT_FAILURE);
+}
 
 int	check_path(t_data *data)
 {

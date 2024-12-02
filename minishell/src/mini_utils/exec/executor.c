@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 17:06:21 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 17:55:20 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:03:16 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	catnls(t_data *data, char **envp)
 int	execute(t_data *data, t_parser *node, char **envp, t_list *aux)
 {
 	signal(SIGINT, sig_ctrlc);
-	singal(SIGQUIT, sig_ctrlslash);
+	signal(SIGQUIT, sig_ctrlslash);
 	if (node && node->all_cmd && node->all_cmd[0])
 	{
 		if (data->flag_pipe == 1)

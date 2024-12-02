@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 18:42:57 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/02 19:12:53 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,18 @@ typedef struct s_data
 	int			flag_path;
 	char		*error_cd;
 	int			fd[2];
+	char		**cnt;
 }	t_data;
 
 //UTILS
 void		draw(void);
+void		export_content(t_data *data, char *str, char **aux, t_envp *tmp);
+
 //EXPORT
 void		set_envp_index(t_data *data);
 int			exp_cmp(const char *s1, const char *s2);
 int			size_envp(t_envp *lst);
+void		ex_export(t_data *d, char **str, int i, int fd);
 //SIGNALS
 void		signals(int sig);
 void		sig_ctrlc(int sig);
@@ -96,6 +100,7 @@ char		**get_words(t_data *data, char const *str, char c, int i);
 int			lexer(char	*str);
 int			check_builts(t_parser *node);
 int			check_path(t_data *data);
+int			check_node(t_data *data, char **str);
 //expander
 void		expand(t_data *d);
 //parsing
