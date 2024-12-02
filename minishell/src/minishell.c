@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/28 18:28:21 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/02 17:08:40 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	inputs(t_data *data, char **envp)
 	if (parsing(data, 0, 0) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
 	if (data->nodes == NULL)
+		return (EXIT_SUCCESS);
 	if (process_route(data, 0) == EXIT_FAILURE)
 		return (EXIT_SUCCESS);
 	if (execute(data, (t_parser *)data->nodes->content), envp, data->nodes == 1)
@@ -77,6 +78,18 @@ int	minishell(t_data *data, char **env)
 			add_history(data->prompt);
 		if (inputs(data, env) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
+		if (data->nodes != NULL)
+			free_node(&data->nodes);
+		if (data->cmd != NULL)
+		{
+			free_split(data->cmd);
+			data->cmd = NULL;
+		}
+		if (data->prompt != NULL)
+		{
+			free(data->prompt);
+			data->prompt = NULL;
+		}
 	}
 	return (EXIT_SUCCESS);
 }
