@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 20:00:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 18:25:37 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:51:43 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,9 +105,9 @@ int	get_tokens(t_data *data, t_parser **node, int *i, int *j)
 			close((*node)->filein);
 		if ((*node)->fileout != 1 && data->cmd[*i][*j] == '>')
 			close((*node)->fileout);
-		if (get_token_filein(data, i, j, node) == EXIT_FAILURE)
+		if (get_token_filein(data, node, i, j) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
-		if (get_token_fileout(data, i, j, node) == EXIT_FAILURE)
+		if (get_token_fileout(data, node, i, j) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
 	}
 	data->size = 0;
@@ -117,7 +117,7 @@ int	get_tokens(t_data *data, t_parser **node, int *i, int *j)
 
 int	parsing(t_data *data, int i, int j)
 {
-	while (data->cmd[i][j] != NULL)
+	while (data->cmd[i] != NULL)
 	{
 		j = 0;
 		if (data->cmd[i][j] == '\0')
@@ -130,7 +130,7 @@ int	parsing(t_data *data, int i, int j)
 			while (data->cmd[i][j] == ' ')
 				j++;
 			if (get_tokens(data, &data->node, &i, &j) == EXIT_FAILURE)
-				return (free_parser(data->node), EXIT_FAILURE);
+				return (free_t_parser(data->node), EXIT_FAILURE);
 			if (get_command(data, &data->node, &i, &j) == EXIT_FAILURE)
 				return (free_t_parser(data->node), EXIT_FAILURE);
 			if (get_tokens(data, &data->node, &i, &j) == EXIT_FAILURE)

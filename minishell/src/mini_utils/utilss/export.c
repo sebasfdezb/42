@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:16:51 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 18:57:37 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:53:24 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static t_envp	*get_first(t_data *data)
 	{
 		if (exp_cmp(first->name, tmp->name) < 0 && tmp->ind == 0)
 			first = tmp;
-		tmp = tmp->name;
+		tmp = tmp->next;
 	}
 	return (first);
 }
@@ -109,10 +109,9 @@ void	ex_export(t_data *d, char **str, int i, int fd)
 				if (d->cnt != NULL)
 					free_split(d->cnt);
 			}
-			else if (d->tmp_envp->ind != NULL)
+			else if (d->tmp_envp->ind != i)
 				d->tmp_envp = d->tmp_envp->next;
 		}
 	}
 	g_last_status = 0;
 }
-

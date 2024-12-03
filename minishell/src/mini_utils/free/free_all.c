@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:20:49 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 18:27:04 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:38:52 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	free_all(t_data *data)
 		free_envp(&data->envp);
 	if (data->nodes != NULL)
 	{
-		free_node(data->nodes);
+		free_node(&data->nodes);
 		data->nodes = NULL;
 	}
 	if (data->cmd != NULL)

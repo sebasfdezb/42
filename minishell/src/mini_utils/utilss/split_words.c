@@ -6,13 +6,13 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:24:14 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 18:22:21 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:56:16 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	counts(t_data *data, char const *str, char c, int *j)
+void	counts(t_data *data, char const *str, char c, int *j)
 {
 	if (*str != '\0' && *str != data->quote && *str != c)
 		(*j)++;
@@ -27,7 +27,7 @@ static void	counts(t_data *data, char const *str, char c, int *j)
 			break ;
 }
 
-static int	count_words(t_data *data, char const *str, char c, int j)
+int	count_words(t_data *data, char const *str, char c, int j)
 {
 	while (*str != '\0')
 	{
@@ -48,7 +48,7 @@ static int	count_words(t_data *data, char const *str, char c, int j)
 	return (j);
 }
 
-static int	process_qnchar(t_data *data, const char *str, char c, int *d)
+int	process_qnchar(t_data *data, const char *str, char c, int *d)
 {
 	while ((data->flag || str[*d] != c) && str[*d] != data->quote
 		&& str[*d] != '\0' && ++(*d) && ++(data->size))
@@ -61,7 +61,7 @@ static int	process_qnchar(t_data *data, const char *str, char c, int *d)
 	return (data->size);
 }
 
-static int	size_words(t_data *data, char const *str, char c, int *d)
+int	size_words(t_data *data, char const *str, char c, int *d)
 {
 	while (str[*d] != '\0' && str[*d] != c)
 	{

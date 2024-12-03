@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 19:12:53 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:51:01 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <readline/readline.h>
 # include <dirent.h>
 # include <sys/stat.h>
+# include <sys/wait.h>
 # include <fcntl.h>
 
 int	g_last_status;
@@ -92,6 +93,7 @@ void		free_split(char **tmp);
 void		free_cd(t_data *data);
 void		free_node(t_list **lst);
 void		free_all(t_data *data);
+void		free_t_parser(t_parser *node);
 //splits
 int			get_path(t_data *d);
 int			get_cmds(t_data *d);
@@ -99,14 +101,15 @@ char		**get_words(t_data *data, char const *str, char c, int i);
 //lexer
 int			lexer(char	*str);
 int			check_builts(t_parser *node);
-int			check_path(t_data *data);
+void		check_path(t_data *data);
 int			check_node(t_data *data, char **str);
+void		check_cargs(t_parser *node);
 //expander
 void		expand(t_data *d);
 //parsing
 int			parsing(t_data *data, int i, int j);
-int			get_token_filein(t_data *data, int *i, int *j, t_parser **node);
-int			get_token_out(t_data *data, int *i, int *j, t_parser **node);
+int			get_token_filein(t_data *data, t_parser **node, int *i, int *j);
+int			get_token_fileout(t_data *data, t_parser **node, int *i, int *j);
 void		ft_heredoc(t_data *data, t_parser **node, char *str);
 //route
 int			process_route(t_data *data, int i);
@@ -115,6 +118,8 @@ int			execute(t_data *data, t_parser *node, char **envp, t_list *aux);
 void		ex_routepipes(t_data *data, t_parser *n, char **envp, t_list *tmp);
 void		error_msg_pipe(char *error);
 void		error_msg(char *error);
+void		ex_route(t_data *data, t_parser *node, char **envp);
+int			ex_builts(t_data *data, t_parser *n);
 //builts
 void		ex_cd(t_data *data, char **str, int flag);
 void		ex_echo(char **str, int flag, int fd);

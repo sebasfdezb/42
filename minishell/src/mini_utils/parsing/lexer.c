@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:39:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 19:07:51 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:40:06 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	check_node(t_data *data, char **str)
 	return (EXIT_FAILURE);
 }
 
-int	check_path(t_data *data)
+void	check_path(t_data *data)
 {
 	t_envp	*tmp;
 

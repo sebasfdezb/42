@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   splits_cmds.c                                      :+:      :+:    :+:   */
+/*   split_cmds.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 17:20:30 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 17:00:38 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	size_cmd(char const *str, char c, int j)
 	char	s;
 
 	size = 0;
-	while (str[j] != '/0' && str[j] != c)
+	while (str[j] != '\0' && str[j] != c)
 	{
 		if (str[j] == '\'' || str[j] == '\"')
 		{
@@ -64,19 +64,17 @@ int	counts(char const **s1, char c, char *s2)
 
 static int	count_cmd(char const *str, char c, int i)
 {
-	int		j;
 	char	s;
 
-	j = 0;
-	while (str[j])
+	while (*str)
 	{
-		if (counts(str[j], c, &s) == -2)
+		if (counts(&str, c, &s) == -2)
 			return (-2);
-		if (str[j] == c && j++)
+		if (*str == c && str++)
 		{
-			while (str[j] == ' ')
-				j++;
-			if (str[j] == c || str[j] == '\0')
+			while (*str == ' ')
+				str++;
+			if (*str == c || *str == '\0')
 				return (printf("Error: Syntax Pipes\n"));
 		}
 		i++;

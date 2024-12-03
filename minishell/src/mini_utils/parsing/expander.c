@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:33:28 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/13 19:56:13 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:39:28 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static char	*envp_content(t_data *d, char *str)
 			next = ft_substr(tmp->content, 1, ft_strlen(tmp->content) - 1);
 			return (next);
 		}
-		next = tmp->next;
+		tmp = tmp->next;
 	}
 	return (ft_strdup(""));
 }

@@ -6,11 +6,29 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:10 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 17:07:18 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/03 16:50:51 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+void	free_t_parser(t_parser *node)
+{
+	if (node == NULL)
+		return ;
+	if (node->all_cmd != NULL)
+	{
+		free_split(node->all_cmd);
+		node->all_cmd = NULL;
+	}
+	if (node->route != NULL)
+		free(node->route);
+	if (node->filein != 0)
+		close(node->filein);
+	if (node->fileout != 1)
+		close(node->fileout);
+	free(node);
+}
 
 static void	free_command(t_list **lst)
 {
