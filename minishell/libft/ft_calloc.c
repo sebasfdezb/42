@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 15:01:42 by sebferna          #+#    #+#             */
-/*   Updated: 2023/12/12 11:00:00 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:48:13 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*a;
-	size_t	i;
 
-	i = 0;
 	a = malloc(count * size);
 	if (a == 0)
 		return (0);

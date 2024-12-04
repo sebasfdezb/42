@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:07:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 17:38:06 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:47:33 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	**get_words(t_data *data, char const *str, char c, int i)
 		data->size = 0;
 		data->size = size_words(data, str, c, &data->d);
 		s[i] = ft_substr(str, (data->d - (data->size)), data->size);
-		split_words(data, s, c);
+		split_words(data, str, c);
 		if (!(s[i]))
 		{
 			free_split(s);

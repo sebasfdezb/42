@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:51:01 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 17:46:18 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,10 @@ void		free_t_parser(t_parser *node);
 int			get_path(t_data *d);
 int			get_cmds(t_data *d);
 char		**get_words(t_data *data, char const *str, char c, int i);
+int			count_words(t_data *data, char const *str, char c, int j);
+int			size_words(t_data *data, char const *str, char c, int *d);
+void		split_words(t_data *data, char const *str, char c);
+char		**splits_cmd(char const *str, char c);
 //lexer
 int			lexer(char	*str);
 int			check_builts(t_parser *node);
