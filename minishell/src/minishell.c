@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 18:43:31 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:13:59 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	init_struct(t_data *data)
 	data->flag = 0;
 	data->d = 0;
 	data->dup_stdin = dup(STDIN_FILENO);
+	data->cnt = NULL;
 }
 
 int	inputs(t_data *data, char **envp)

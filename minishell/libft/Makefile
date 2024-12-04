@@ -41,21 +41,19 @@ SRC 		= ft_atoi.c\
 				ft_printptr.c\
 				ft_printstr.c\
 				ft_printunsigned.c\
-
-SRCBONUS = ft_lstnew_bonus.c\
-			ft_lstsize_bonus.c\
-			ft_lstadd_front_bonus.c\
-			ft_lstlast_bonus.c\
-			ft_lstadd_back_bonus.c\
-			ft_lstdelone_bonus.c\
-			ft_lstclear_bonus.c\
-			ft_lstiter_bonus.c\
-			ft_lstmap_bonus.c\
-			get_next_line_bonus.c\
-			get_next_line_utils_bonus
+				ft_lstnew_bonus.c\
+				ft_lstsize_bonus.c\
+				ft_lstadd_front_bonus.c\
+				ft_lstlast_bonus.c\
+				ft_lstadd_back_bonus.c\
+				ft_lstdelone_bonus.c\
+				ft_lstclear_bonus.c\
+				ft_lstiter_bonus.c\
+				ft_lstmap_bonus.c\
+				get_next_line_bonus.c\
+				get_next_line_utils_bonus.c\
 
 OBJECTS = $(SRC:.c=.o)
-OBJECTSB = $(SRCBONUS:.c=.o)
 
 .c.o:
 		gcc $(FLAGS) -c $< -o $(<:.c=.o)
@@ -65,11 +63,8 @@ $(NAME) : $(OBJECTS)
 
 all : $(NAME)
 
-bonus: $(NAME) 	$(OBJECTSB)
-		ar rcs $(NAME) $(OBJECTSB)
-
 clean:
-		rm -f $(OBJECTS) $(OBJECTSB)
+		rm -f $(OBJECTS)
 
 fclean:	clean
 		rm -f $(NAME) $(bonus)

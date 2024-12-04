@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:46:31 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:14:28 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	get_next_token(t_data *data, int *i, int *j)
 	return (EXIT_SUCCESS);
 }
 
-int	get_token_fileout(t_data *data,  t_parser **node, int *i, int *j)
+int	get_token_fileout(t_data *data, t_parser **node, int *i, int *j)
 {
 	data->flag_add = 0;
 	data->flag_token = 2;
@@ -100,7 +100,7 @@ int	get_token_fileout(t_data *data,  t_parser **node, int *i, int *j)
 	return (EXIT_SUCCESS);
 }
 
-int	get_token_filein(t_data *data,  t_parser **node, int *i, int *j)
+int	get_token_filein(t_data *data, t_parser **node, int *i, int *j)
 {
 	data->flag_hered = 0;
 	data->flag_token = 1;

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:25:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:31:24 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 19:14:42 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,3 @@ void	ex_route(t_data *data, t_parser *node, char **envp)
 		check_cargs(node);
 	}
 }
-

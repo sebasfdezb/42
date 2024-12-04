@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:12:42 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/04 18:47:06 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:51:27 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *str1, char *str2);
 int		ft_strchr_gnl(const char *str, int len);
 size_t	ft_strlen_gnl(const char *str);
+void	*ft_calloc_gnl(size_t count, size_t size);
 //PRINTF
 int		ft_printf(int fd, char const *str, ...);
 int		ft_printchar(char c, int fd);
