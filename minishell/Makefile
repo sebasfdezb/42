@@ -6,7 +6,7 @@
 #    By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:47:50 by sebferna          #+#    #+#              #
-#    Updated: 2024/12/02 18:27:31 by sebferna         ###   ########.fr        #
+#    Updated: 2024/12/04 17:58:22 by sebferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,30 +45,32 @@ LIBFT_DIR = ./libft
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
+INC_SYS = -I ./include -I /Users/sebferna/.brew/opt/readline/include
+
+LIB_SYS = -L /Users/sebferna/.brew/opt/readline/lib -lreadline
+
 OBJS = $(SRC:.c=.o)
 
-$(NAME): $(OBJS) $(LIBFT)
-		@$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -o $(NAME)
+all : $(NAME) $(LIBFT)
 
-$(OBJS): src/%.o : src/%.c
-		@$(CC) $(CFLAGS) -c $< -o $@
+$(LIBFT) :
+	@make -s -C $(LIBFT_DIR)
 
-$(LIBFT):
-		@make -s -C $(LIBFT_DIR)
+$(NAME) : $(OBJS) $(LIBFT)
+	@$(CC) $(FLAGS) $(SRC) $(LIBFT) $(INC_SYS) $(LIB_SYS)  -o $(NAME)
 
-all: $(NAME)
+$(OBJS) : $(SRC)
+	@$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-		@rm -f $(OBJS)
-		@make clean -s -C $(LIBFT_DIR)
+	@rm -fr $(OBJS) $(OBJS_BONUS)
+	@make clean -s -C $(LIBFT_DIR)
 
-fclean:
-		@rm -f $(NAME) $(OBJS)
-		@make fclean -s -C $(LIBFT_DIR)
+fclean: clean
+	@rm -fr $(NAME)
+	@make fclean -s -C $(LIBFT_DIR)
 
 re: fclean all
 
-pipe: all clean
-
-.PHONY: all re fclean clean
+.PHONY : all clean fclean re
 
