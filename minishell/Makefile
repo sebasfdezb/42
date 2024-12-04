@@ -6,7 +6,7 @@
 #    By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/07 12:47:50 by sebferna          #+#    #+#              #
-#    Updated: 2024/12/04 17:58:22 by sebferna         ###   ########.fr        #
+#    Updated: 2024/12/04 18:32:33 by sebferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,9 +45,9 @@ LIBFT_DIR = ./libft
 
 LIBFT = $(LIBFT_DIR)/libft.a
 
-INC_SYS = -I ./include -I /Users/sebferna/.brew/opt/readline/include
+INC_SYS = -I /usr/include
 
-LIB_SYS = -L /Users/sebferna/.brew/opt/readline/lib -lreadline
+LIB_SYS = -L /usr/lib/x86_64-linux-gnu -lreadline
 
 OBJS = $(SRC:.c=.o)
 
@@ -57,10 +57,10 @@ $(LIBFT) :
 	@make -s -C $(LIBFT_DIR)
 
 $(NAME) : $(OBJS) $(LIBFT)
-	@$(CC) $(FLAGS) $(SRC) $(LIBFT) $(INC_SYS) $(LIB_SYS)  -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRC) $(LIBFT) $(INC_SYS) $(LIB_SYS) -o $(NAME)
 
 $(OBJS) : $(SRC)
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@rm -fr $(OBJS) $(OBJS_BONUS)

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 17:02:24 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:39:56 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static int	size_cmd(char const *str, char c, int j)
 	return (size);
 }
 
-int	counts(char const **s1, char c, char *s2)
+int	counts_extend(char const **s1, char c, char *s2)
 {
 	if (**s1 == c)
 		return (printf("Error: Syntax token `|'\n"), -2);
@@ -68,7 +68,7 @@ static int	count_cmd(char const *str, char c, int i)
 
 	while (*str)
 	{
-		if (counts(&str, c, &s) == -2)
+		if (counts_extend(&str, c, &s) == -2)
 			return (-2);
 		if (*str == c && str++)
 		{

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 15:12:42 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/26 18:10:07 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/04 18:47:06 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 //getnextline
 char	*get_next_line(int fd);
 char	*ft_strjoin_gnl(char *str1, char *str2);
+int		ft_strchr_gnl(const char *str, int len);
+size_t	ft_strlen_gnl(const char *str);
 //PRINTF
 int		ft_printf(int fd, char const *str, ...);
 int		ft_printchar(char c, int fd);

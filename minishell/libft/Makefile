@@ -33,7 +33,14 @@ SRC 		= ft_atoi.c\
 				ft_split.c\
 				ft_itoa.c\
 				ft_striteri.c\
-				ft_strmapi.c
+				ft_strmapi.c\
+				ft_printf.c\
+				ft_printchar.c\
+				ft_printhexa.c\
+				ft_printdec.c\
+				ft_printptr.c\
+				ft_printstr.c\
+				ft_printunsigned.c\
 
 SRCBONUS = ft_lstnew_bonus.c\
 			ft_lstsize_bonus.c\
