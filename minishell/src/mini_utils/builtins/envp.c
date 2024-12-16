@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:44:28 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/02 18:35:14 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:08:19 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	get_envp(t_data *data, char **envp, int i)
 	char	**curr;
 	t_envp	*tmp;
 
-	while (envp[i++] != NULL)
+	while (envp[++i] != NULL)
 	{
 		tmp = ft_calloc(1, sizeof(t_envp));
 		if (!tmp)

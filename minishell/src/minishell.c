@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 12:59:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 13:08:31 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ int	getprompt(t_data *data)
 
 int	minishell(t_data *data, char **env)
 {
-	draw();
 	while (1)
 	{
 		signal(SIGINT, signals);
@@ -106,10 +105,11 @@ int	main(int argc, char **argv, char **envp)
 	(void)argc;
 	(void)argv;
 	data = ft_calloc(1, sizeof(t_data));
-	if (data == NULL)
+	if (!data)
 		return (EXIT_FAILURE);
 	init_struct(data);
-	get_envp(data, envp, 0);
+	draw();
+	get_envp(data, envp, -1);
 	if (minishell(data, envp) == EXIT_FAILURE)
 		return (free_all(data), EXIT_FAILURE);
 	return (free_all(data), EXIT_SUCCESS);
