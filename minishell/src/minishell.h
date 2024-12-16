@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/04 17:46:18 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:38:33 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # include <sys/wait.h>
 # include <fcntl.h>
 
-int	g_last_status;
+extern int	g_last_status;
 
 typedef struct s_envp
 {

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 16:39:46 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:40:06 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:56:45 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,9 @@ int	lexer(char	*str)
 	while (str && str[i])
 	{
 		if (str[i] == '\'' && !qdoubles)
-			qsimple = 1;
+			qsimple = !qsimple;
 		else if (str[i] == '\"' && !qsimple)
-			qdoubles = 1;
+			qdoubles = !qdoubles;
 		i++;
 	}
 	if (qsimple || qdoubles)

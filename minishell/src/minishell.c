@@ -6,13 +6,15 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/04 19:13:59 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:59:42 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	init_struct(t_data *data)
+int g_last_status = 1;
+
+static void	init_struct(t_data *data)
 {
 	data->prompt = NULL;
 	data->path = NULL;
@@ -28,16 +30,16 @@ int	inputs(t_data *data, char **envp)
 {
 	if (lexer(data->prompt) == EXIT_FAILURE)
 		return (printf("Error: Unclosed Quotes\n"), EXIT_SUCCESS);
-	if (get_path(data) == EXIT_FAILURE)
+	if (get_path(data) == 1)
 		return (EXIT_SUCCESS);
-	if (get_cmds(data) == EXIT_FAILURE)
+	if (get_cmds(data) == 1)
 		return (EXIT_SUCCESS);
 	expand(data);
-	if (parsing(data, 0, 0) == EXIT_FAILURE)
+	if (parsing(data, 0, 0) == 1)
 		return (EXIT_SUCCESS);
 	if (data->nodes == NULL)
 		return (EXIT_SUCCESS);
-	if (process_route(data, 0) == EXIT_FAILURE)
+	if (process_route(data, 0) == 1)
 		return (EXIT_SUCCESS);
 	if (execute(data, (t_parser *)data->nodes->content, envp, data->nodes) == 1)
 		return (EXIT_SUCCESS);
