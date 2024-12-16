@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/04 18:39:56 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:13:57 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ static int	count_cmd(char const *str, char c, int i)
 {
 	char	s;
 
-	while (*str)
+	while (*str != '\0')
 	{
 		if (counts_extend(&str, c, &s) == -2)
 			return (-2);
@@ -75,7 +75,7 @@ static int	count_cmd(char const *str, char c, int i)
 			while (*str == ' ')
 				str++;
 			if (*str == c || *str == '\0')
-				return (printf("Error: Syntax Pipes\n"));
+				return (printf("Error: Syntax Pipes\n"), -2);
 		}
 		i++;
 	}
@@ -100,7 +100,7 @@ char	**splits_cmd(char const *str, char c)
 		while (str[j] == ' ')
 			j++;
 		s[i] = ft_substr(str, j, size_cmd(str, c, j));
-		if (!s[i])
+		if (!(s[i]))
 		{
 			free_split(s);
 			return (0);

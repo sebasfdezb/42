@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 17:07:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/04 17:47:33 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:18:12 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char	**get_words(t_data *data, char const *str, char c, int i)
 	data->flag = 0;
 	data->quote = '\0';
 	j = count_words(data, str, c, 0);
-	s = (char **)malloc(sizeof(char *) * (j + 1));
+	s = malloc(sizeof(char *) * (j + 1));
 	if (!s)
 		return (0);
-	while (i < j)
+	while (++i < j)
 	{
 		data->flag = 0;
 		data->quote = '\0';
@@ -51,7 +51,7 @@ int	get_cmds(t_data *d)
 	if (d->prompt[i] == '\0')
 		return (EXIT_FAILURE);
 	d->cmd = splits_cmd(d->prompt, '|');
-	if (!d->cmd)
+	if (d->cmd == NULL)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
@@ -61,7 +61,7 @@ int	get_path(t_data *d)
 	t_envp	*tmp;
 
 	tmp = d->envp;
-	if (!d->path)
+	if (d->path != NULL)
 	{
 		free_split(d->path);
 		d->path = NULL;
