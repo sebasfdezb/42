@@ -6,13 +6,13 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:38 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 13:08:31 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:22:17 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int g_last_status = 1;
+int g_last_status = 0;
 
 static void	init_struct(t_data *data)
 {
@@ -70,6 +70,7 @@ int	getprompt(t_data *data)
 
 int	minishell(t_data *data, char **env)
 {
+	draw();
 	while (1)
 	{
 		signal(SIGINT, signals);
@@ -108,7 +109,6 @@ int	main(int argc, char **argv, char **envp)
 	if (!data)
 		return (EXIT_FAILURE);
 	init_struct(data);
-	draw();
 	get_envp(data, envp, -1);
 	if (minishell(data, envp) == EXIT_FAILURE)
 		return (free_all(data), EXIT_FAILURE);

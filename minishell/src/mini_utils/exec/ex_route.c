@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:25:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/04 19:14:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:37:36 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	route_child_ex(t_data *data, t_parser *node, char **envp)
 	signal(SIGQUIT, SIG_DFL);
 	if (data->flag_hered == 1)
 	{
-		if (dup2(node->filein, STDERR_FILENO) == -1)
+		if (dup2(node->filein, STDIN_FILENO) == -1)
 			error_msg("Here_doc read error\n");
 		unlink("here_doc.tmp");
 	}

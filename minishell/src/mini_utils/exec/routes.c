@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:08:20 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/20 20:10:54 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 16:55:14 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@ int	get_dir(char *aux)
 
 	dir = opendir(aux);
 	if (dir != NULL)
-		return (closedir(dir), EXIT_FAILURE);
+	{
+		closedir(dir);
+		return(1);
+	}
 	else
-		return (EXIT_SUCCESS);
+		return (0);
 }
 
 int	get_route(t_data *data, t_parser *node, int i)
@@ -29,8 +32,8 @@ int	get_route(t_data *data, t_parser *node, int i)
 	char	*aux2;
 
 	if (node->all_cmd[0] == NULL)
-		return (printf("error"), EXIT_FAILURE);
-	if (check_builts(node) == EXIT_FAILURE)
+		return (printf("error"), 1);
+	if (check_builts(node) == 1)
 		return (EXIT_SUCCESS);
 	while (data->path != NULL && data->path[++i] != NULL)
 	{
@@ -48,7 +51,7 @@ int	get_route(t_data *data, t_parser *node, int i)
 		&& access(node->all_cmd[0], X_OK) == 0)
 		node->route = ft_strdup(node->all_cmd[0]);
 	if (node->route == NULL)
-		return (printf("error"));
+		return (printf("error"), 1);
 	return (EXIT_SUCCESS);
 }
 
@@ -64,9 +67,9 @@ int	process_route(t_data *data, int i)
 			return (g_last_status = 127, EXIT_FAILURE);
 		if (i == 1)
 			data->flag_pipe = 1;
+		i++;
 		if (tmp->next != NULL)
 			tmp = tmp->next;
-		i++;
 	}
 	if (((t_parser *)(tmp->content))->all_cmd == NULL)
 		((t_parser *)(tmp->content))->route = NULL;
