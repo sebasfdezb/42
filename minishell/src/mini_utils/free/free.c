@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:10 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 12:52:42 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:01:40 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	free_command(t_list **lst)
 	((t_parser *)((*lst)->content))->route = NULL;
 	if (((t_parser *)((*lst)->content))->filein != 0)
 		close(((t_parser *)((*lst)->content))->filein);
-	if (((t_parser *)((*lst)->content))->fileout != 0)
+	if (((t_parser *)((*lst)->content))->fileout != 1)
 		close(((t_parser *)((*lst)->content))->fileout);
 	free(((t_parser *)((*lst)->content)));
 	(*lst)->content = NULL;
