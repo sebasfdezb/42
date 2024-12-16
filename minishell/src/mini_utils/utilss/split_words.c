@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:24:14 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:56:16 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:28:30 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@ void	counts(t_data *data, char const *str, char c, int *j)
 {
 	if (*str != '\0' && *str != data->quote && *str != c)
 		(*j)++;
-	if (data->flag)
-	{
-		while (*str != data->quote && *str != '\0')
-			str++;
-		data->flag = !data->flag;
-	}
-	while (*str != c && *str != '\0' && *(str)++)
-		if (*str == '\'' || *str == '\"')
-			break ;
 }
 
 int	count_words(t_data *data, char const *str, char c, int j)
@@ -44,21 +35,17 @@ int	count_words(t_data *data, char const *str, char c, int j)
 				break ;
 		}
 		counts(data, str, c, &j);
+		if (data->flag)
+		{
+			while (*str != data->quote && *str != '\0')
+				str++;
+			data->flag = !data->flag;
+		}
+		while (*str != c && *str != '\0' && *(str)++)
+			if (*str == '\'' || *str == '\"')
+				break ;
 	}
 	return (j);
-}
-
-int	process_qnchar(t_data *data, const char *str, char c, int *d)
-{
-	while ((data->flag || str[*d] != c) && str[*d] != data->quote
-		&& str[*d] != '\0' && ++(*d) && ++(data->size))
-	{
-		if (!data->flag && (str[*d] == '\'' || str[*d] == '\"'))
-			return (data->size);
-	}
-	if (str[*d] == data->quote)
-		return (data->size);
-	return (data->size);
 }
 
 int	size_words(t_data *data, char const *str, char c, int *d)
@@ -69,7 +56,7 @@ int	size_words(t_data *data, char const *str, char c, int *d)
 			&& str[(*d) + 1] == str[*d] && ++(*d) && ++(*d))
 			while (str[*d] == c)
 				(*d)++;
-		while ((str[*d] == '\'' || str[*d] == '\"') && data->quote == '\0'
+		while ((str[*d] == 39 || str[*d] == 34) && data->quote == '\0'
 			&& str[*d] != '\0')
 		{
 			if (data->quote == '\0' || str[*d] == data->quote)
@@ -81,7 +68,13 @@ int	size_words(t_data *data, char const *str, char c, int *d)
 			while (!data->flag && str[*d] == c)
 				(*d)++;
 		}
-		if (process_qnchar(data, str, c, d) != data->size)
+		while ((data->flag || str[*d] != c) && str[*d] != data->quote
+			&& str[*d] != '\0' && ++(*d) && ++(data->size))
+		{
+			if (!data->flag && (str[*d] == '\'' || str[*d] == '\"'))
+				return (data->size);
+		}
+		if (str[*d] == data->quote)
 			return (data->size);
 	}
 	return (data->size);
