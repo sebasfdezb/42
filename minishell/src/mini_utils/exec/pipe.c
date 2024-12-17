@@ -6,21 +6,21 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:10:18 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:32:58 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:33:17 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	process_pipe_out(t_parser *node, char **envp)
+void	process_pipe_out(t_parser *node, char **envp, t_data *data)
 {
 	if (node->fileout != STDOUT_FILENO)
 	{
 		if (dup2(node->fileout, STDOUT_FILENO) == -1)
-			error_msg("Last command wrt error\n");
+			error_msg("Last command wrt error\n", data);
 		close(node->fileout);
 	}
-	g_last_status = execve(node->route, node->all_cmd, envp);
+	data->status = execve(node->route, node->all_cmd, envp);
 }
 
 void	process_final_pipe(t_data *data, t_parser *node, char **envp)
@@ -28,25 +28,25 @@ void	process_final_pipe(t_data *data, t_parser *node, char **envp)
 	if (node->filein != 0 && data->flag_hered == 1)
 	{
 		if (dup2(node->filein, STDIN_FILENO) == -1)
-			error_msg_pipe("Here_doc read error\n");
+			error_msg_pipe("Here_doc read error\n", data);
 	}
 	else if (node->filein != 0 && data->flag_hered == 0)
 	{
 		if (dup2(node->filein, STDIN_FILENO) == -1)
-			error_msg_pipe("Infile read error\n");
+			error_msg_pipe("Infile read error\n", data);
 	}
 	else if (data->fd[1] == STDOUT_FILENO)
 	{
 		if (dup2(data->fd[0], STDIN_FILENO) == -1)
-			error_msg_pipe("Read error\n");
+			error_msg_pipe("Read error\n", data);
 	}
 	else if (node->filein == 0)
 	{
 		if (dup2(node->filein, STDIN_FILENO) == -1)
-			error_msg_pipe("Infile read error\n");
+			error_msg_pipe("Infile read error\n", data);
 	}
 	close(node->filein);
-	process_pipe_out(node, envp);
+	process_pipe_out(node, envp, data);
 }
 
 void	handle_child_command(t_data *d, t_parser *n, char **envp, t_list *tmp)
@@ -54,12 +54,12 @@ void	handle_child_command(t_data *d, t_parser *n, char **envp, t_list *tmp)
 	if (n->fileout == 1)
 	{
 		if (dup2(d->fd[1], STDOUT_FILENO) == -1)
-			error_msg_pipe("Outfile wrt error");
+			error_msg_pipe("Outfile wrt error", d);
 	}
 	else if (n->fileout != 1)
 	{
 		if (dup2(n->fileout, STDOUT_FILENO) == -1)
-			error_msg_pipe("Outfile wrt error");
+			error_msg_pipe("Outfile wrt error", d);
 		close(n->fileout);
 	}
 	close(d->fd[1]);
@@ -71,7 +71,7 @@ void	handle_child_command(t_data *d, t_parser *n, char **envp, t_list *tmp)
 		exit(1);
 	}
 	else
-		g_last_status = execve(n->route, n->all_cmd, envp);
+		d->status = execve(n->route, n->all_cmd, envp);
 }
 
 void	handle_child_pipe(t_data *d, t_parser *node, char **envp, t_list *tmp)
@@ -81,14 +81,14 @@ void	handle_child_pipe(t_data *d, t_parser *node, char **envp, t_list *tmp)
 	if (d->flag_hered == 1)
 	{
 		if (dup2(node->filein, STDIN_FILENO) == -1)
-			error_msg_pipe("Here_doc read error\n");
+			error_msg_pipe("Here_doc read error\n", d);
 		unlink("here_doc.tmp");
 		close(node->filein);
 	}
 	else if (node->filein != STDIN_FILENO)
 	{
 		if (dup2(node->filein, STDIN_FILENO) == -1)
-			error_msg_pipe("Infile read error\n");
+			error_msg_pipe("Infile read error\n", d);
 		close(node->filein);
 	}
 	close(d->fd[0]);
@@ -100,13 +100,13 @@ void	ex_routepipes(t_data *data, t_parser *n, char **envp, t_list *tmp)
 	pid_t	pid;
 
 	if (pipe(data->fd) == -1)
-		error_msg("Pipe error\n");
+		error_msg("Pipe error\n", data);
 	pid = fork();
 	if (pid == -1)
 	{
 		close(data->fd[0]);
 		close(data->fd[1]);
-		error_msg("Fork error\n");
+		error_msg("Fork error\n", data);
 	}
 	if (pid == 0)
 	{
@@ -121,5 +121,5 @@ void	ex_routepipes(t_data *data, t_parser *n, char **envp, t_list *tmp)
 		close(data->fd[0]);
 	close(data->fd[1]);
 	waitpid(pid, NULL, 0);
-	check_cargs(n);
+	check_cargs(n, data);
 }

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 17:06:21 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:29:14 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:36:41 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ex_builts(t_data *data, t_parser *n)
 	else if (n->all_cmd[0] && ft_strncmp(n->all_cmd[0], "cd\0", 3) == 0)
 		ex_cd(data, n->all_cmd, 0);
 	else if (n->all_cmd[0] && ft_strncmp(n->all_cmd[0], "echo\0", 4) == 0)
-		ex_echo(n->all_cmd, 0, n->fileout);
+		ex_echo(n->all_cmd, 0, n->fileout, data);
 	else if (n->all_cmd[0] && ft_strncmp(n->all_cmd[0], "envp\0", 5) == 0)
 		ex_envp(data, n->fileout);
 	else if (n->all_cmd[0] && ft_strncmp(n->all_cmd[0], "pwd\0", 4) == 0)

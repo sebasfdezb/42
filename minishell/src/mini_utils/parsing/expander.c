@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 18:33:28 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:39:28 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:38:29 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static char	*envp_content(t_data *d, char *str)
 	tmp = d->envp;
 	if (ft_strncmp(str, "?", 1) == EXIT_SUCCESS)
 	{
-		status = ft_itoa(g_last_status);
+		status = ft_itoa(d->status);
 		return (status);
 	}
 	while (tmp)

@@ -6,13 +6,13 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 17:25:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 16:37:36 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:32:09 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	check_cargs(t_parser *node)
+void	check_cargs(t_parser *node, t_data *data)
 {
 	struct stat	file_inf;
 	int			i;
@@ -27,13 +27,13 @@ void	check_cargs(t_parser *node)
 		while (node->all_cmd[i - 1][j])
 		{
 			if (ft_isdigit(node->all_cmd[i - 1][j]))
-				g_last_status = 1;
+				data->status = 1;
 			j++;
 		}
 	}
 	if (stat(node->all_cmd[i], &file_inf) == 0 || !node->all_cmd[i])
 		return ;
-	g_last_status = 1;
+	data->status = 1;
 }
 
 void	route_child_ex(t_data *data, t_parser *node, char **envp)
@@ -43,37 +43,37 @@ void	route_child_ex(t_data *data, t_parser *node, char **envp)
 	if (data->flag_hered == 1)
 	{
 		if (dup2(node->filein, STDIN_FILENO) == -1)
-			error_msg("Here_doc read error\n");
+			error_msg("Here_doc read error\n", data);
 		unlink("here_doc.tmp");
 	}
 	else if (node->filein != 0)
 	{
 		if (dup2(node->filein, STDIN_FILENO) == -1)
-			error_msg("Infile read error\n");
+			error_msg("Infile read error\n", data);
 	}
 	if (node->fileout != 1)
 	{
 		if (dup2(node->fileout, STDOUT_FILENO) == -1)
-			error_msg("Wrt error\n");
+			error_msg("Wrt error\n", data);
 	}
-	g_last_status = execve(node->route, node->all_cmd, envp);
+	data->status = execve(node->route, node->all_cmd, envp);
 }
 
-void	default_execute(t_parser *node, char **envp)
+void	default_execute(t_parser *node, char **envp, t_data *data)
 {
 	pid_t	pid;
 
 	pid = fork();
 	if (pid == -1)
 	{
-		g_last_status = 1;
-		error_msg("Fork error\n");
+		data->status = 1;
+		error_msg("Fork error\n", data);
 	}
 	if (pid == 0)
-		g_last_status = execve(node->route, node->all_cmd, envp);
+		data->status = execve(node->route, node->all_cmd, envp);
 	else
 		waitpid(pid, NULL, 0);
-	check_cargs(node);
+	check_cargs(node, data);
 }
 
 void	ex_route(t_data *data, t_parser *node, char **envp)
@@ -84,7 +84,7 @@ void	ex_route(t_data *data, t_parser *node, char **envp)
 	if (ex_builts(data, node) == 0)
 		return ;
 	else if (node->filein == 0 && node->fileout == 1)
-		default_execute(node, envp);
+		default_execute(node, envp, data);
 	else
 	{
 		lst = data->nodes;
@@ -92,13 +92,13 @@ void	ex_route(t_data *data, t_parser *node, char **envp)
 		pid = fork();
 		if (pid == -1)
 		{
-			g_last_status = 1;
-			error_msg("Fork error\n");
+			data->status = 1;
+			error_msg("Fork error\n", data);
 		}
 		if (pid == 0)
 			route_child_ex(data, node, envp);
 		else
 			waitpid(pid, NULL, 0);
-		check_cargs(node);
+		check_cargs(node, data);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:43:24 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 13:42:05 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:45:30 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	draw(void)
 {
-    printf(" ███████╗██████╗  \n");
-    printf(" ██╔════╝██╔══██╗ \n");
-    printf(" █████╗  ██████╔╝ \n");
-    printf(" ██╔══╝  ██╔═══╝  \n");
-    printf(" ███████╗██║      \n");
-    printf(" ╚══════╝╚═╝      \n");
-    printf("\n");
+	printf(" ███████╗██████╗  \n");
+	printf(" ██╔════╝██╔══██╗ \n");
+	printf(" █████╗  ██████╔╝ \n");
+	printf(" ██╔══╝  ██╔═══╝  \n");
+	printf(" ███████╗██║      \n");
+	printf(" ╚══════╝╚═╝      \n");
+	printf("\n");
 }
 
 void	sig_ctrlslash(int sig)

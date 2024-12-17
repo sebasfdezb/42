@@ -6,20 +6,20 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:48:11 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 12:48:07 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:42:48 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-static void	free_envp_node(t_envp *remove)
+static void	free_envp_node(t_envp *remove, t_data *data)
 {
 	free(remove->name);
 	if (remove->content != NULL)
 		free(remove->content);
 	free(remove);
 	remove = NULL;
-	g_last_status = 0;
+	data->status = 0;
 }
 
 void	ex_unset(t_data *data, char *str)
@@ -41,12 +41,12 @@ void	ex_unset(t_data *data, char *str)
 				prev_node->next = curr_node->next;
 			else
 				data->envp = curr_node->next;
-			free_envp_node(del_node);
+			free_envp_node(del_node, data);
 			return ;
 		}
 		prev_node = curr_node;
 		curr_node = curr_node->next;
 	}
 	check_path(data);
-	g_last_status = 1;
+	data->status = 1;
 }

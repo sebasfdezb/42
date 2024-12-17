@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 12:48:16 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 12:38:33 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:43:26 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@
 # include <sys/stat.h>
 # include <sys/wait.h>
 # include <fcntl.h>
-
-extern int	g_last_status;
 
 typedef struct s_envp
 {
@@ -73,6 +71,7 @@ typedef struct s_data
 	char		*error_cd;
 	int			fd[2];
 	char		**cnt;
+	int			status;
 }	t_data;
 
 //UTILS
@@ -107,7 +106,7 @@ int			lexer(char	*str);
 int			check_builts(t_parser *node);
 void		check_path(t_data *data);
 int			check_node(t_data *data, char **str);
-void		check_cargs(t_parser *node);
+void		check_cargs(t_parser *node, t_data *data);
 //expander
 void		expand(t_data *d);
 //parsing
@@ -120,13 +119,13 @@ int			process_route(t_data *data, int i);
 //exec
 int			execute(t_data *data, t_parser *node, char **envp, t_list *aux);
 void		ex_routepipes(t_data *data, t_parser *n, char **envp, t_list *tmp);
-void		error_msg_pipe(char *error);
-void		error_msg(char *error);
+void		error_msg_pipe(char *error, t_data *data);
+void		error_msg(char *error, t_data *data);
 void		ex_route(t_data *data, t_parser *node, char **envp);
 int			ex_builts(t_data *data, t_parser *n);
 //builts
 void		ex_cd(t_data *data, char **str, int flag);
-void		ex_echo(char **str, int flag, int fd);
+void		ex_echo(char **str, int flag, int fd, t_data *d);
 void		get_envp(t_data *data, char **envp, int i);
 int			ex_exit(t_data *data, t_parser *node, int i, int fd);
 void		ex_pwd(int fd);

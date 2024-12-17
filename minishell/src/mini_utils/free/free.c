@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:39:10 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 17:02:21 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:26:44 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	free_cd(t_data *data)
 {
 	free(data->aux);
 	free(data->error_cd);
-	g_last_status = 1;
+	data->status = 1;
 }
 
 void	free_split(char **tmp)

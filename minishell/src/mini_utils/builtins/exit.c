@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:58:27 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 12:52:22 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:18:56 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,5 @@ int	ex_exit(t_data *data, t_parser *node, int i, int fd)
 		free_split(data->path);
 		data->path = NULL;
 	}
-	exit(g_last_status);
+	exit(data->status);
 }

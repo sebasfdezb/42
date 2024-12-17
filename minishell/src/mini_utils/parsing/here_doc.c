@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 18:26:37 by sebferna          #+#    #+#             */
-/*   Updated: 2024/11/25 18:38:11 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:33:49 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_heredoc(t_data *data, t_parser **node, char *str)
 		write(1, "heredoc> ", 9);
 		str = get_next_line(data->dup_stdin);
 		if (!str)
-			error_msg("Get Next Line Error");
+			error_msg("Get Next Line Error", data);
 		if (!ft_strncmp(data->filein, str, ft_strlen(data->filein)))
 		{
 			free(str);
@@ -36,5 +36,5 @@ void	ft_heredoc(t_data *data, t_parser **node, char *str)
 	(*node)->filein = open("here_doc.tmp", O_RDONLY);
 	data->dup_stdin = dup(STDIN_FILENO);
 	if ((*node)->filein == -1)
-		error_msg("Here DOc open file1 Error");
+		error_msg("Here DOc open file1 Error", data);
 }

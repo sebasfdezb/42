@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:54:37 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 12:42:57 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:18:34 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	up_currdir(t_data *data)
 		}
 		tmp = tmp->next;
 	}
-	g_last_status = 0;
+	data->status = 0;
 }
 
 void	home_path(t_data *data, char *str)
@@ -79,7 +79,7 @@ void	update_cd(t_data *data)
 	home_path(data, "HOME\0");
 	chdir(data->aux);
 	up_currdir(data);
-	g_last_status = 0;
+	data->status = 0;
 }
 
 void	ex_cd(t_data *data, char **str, int flag)

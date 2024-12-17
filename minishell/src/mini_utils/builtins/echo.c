@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 18:27:48 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 12:52:13 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:34:30 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	echo_print_args(char **str, int i, int fd)
 	}
 }
 
-void	ex_echo(char **str, int flag, int fd)
+void	ex_echo(char **str, int flag, int fd, t_data *d)
 {
 	int	i;
 
@@ -61,5 +61,5 @@ void	ex_echo(char **str, int flag, int fd)
 	}
 	if (flag == 0)
 		ft_printf(fd, "\n");
-	g_last_status = 0;
+	d->status = 0;
 }

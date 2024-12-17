@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 18:19:55 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/04 19:14:28 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:38:54 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	get_last_token_util(t_data *data, t_parser **node, int *i, int *j)
 		(*node)->fileout = open(data->fileout, O_WRONLY | O_CREAT | O_APPEND,
 				0644);
 	if ((*node)->filein == -1 || (*node)->fileout == -1)
-		return (g_last_status = 1, printf("error"), EXIT_FAILURE);
+		return (data->status = 1, printf("error"), EXIT_FAILURE);
 	if (data->flag_token == 1)
 		free(data->filein);
 	if (data->flag_token == 2)

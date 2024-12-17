@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 18:08:20 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 16:55:14 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:37:04 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	get_dir(char *aux)
 	if (dir != NULL)
 	{
 		closedir(dir);
-		return(1);
+		return (1);
 	}
 	else
 		return (0);
@@ -64,7 +64,7 @@ int	process_route(t_data *data, int i)
 	while (data->cmd[i] != NULL && ((t_parser *)(tmp->content))->all_cmd)
 	{
 		if (get_route(data, ((t_parser *)(tmp->content)), -1) == 1)
-			return (g_last_status = 127, EXIT_FAILURE);
+			return (data->status = 127, EXIT_FAILURE);
 		if (i == 1)
 			data->flag_pipe = 1;
 		i++;

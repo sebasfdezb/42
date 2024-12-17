@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:16:51 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/03 16:53:24 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:28:22 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,5 @@ void	ex_export(t_data *d, char **str, int i, int fd)
 				d->tmp_envp = d->tmp_envp->next;
 		}
 	}
-	g_last_status = 0;
+	d->status = 0;
 }
