@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:24:14 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/17 16:56:51 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 17:07:43 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,22 @@ int	count_words(t_data *data, char const *str, char c, int j)
 	return (j);
 }
 
+static void	handle_quotes(t_data *data, char const *str, int *d, char c)
+{
+	while ((str[*d] == '\'' || str[*d] == '\"') && data->quote == '\0'
+		&& str[*d] != '\0')
+	{
+		if (data->quote == '\0' || str[*d] == data->quote)
+		{
+			data->flag = !data->flag;
+			data->quote = str[*d];
+		}
+		(*d)++;
+		while (!data->flag && str[*d] == c)
+			(*d)++;
+	}
+}
+
 int	size_words(t_data *data, char const *str, char c, int *d)
 {
 	while (str[*d] != '\0' && str[*d] != c)
@@ -57,18 +73,7 @@ int	size_words(t_data *data, char const *str, char c, int *d)
 			&& str[(*d) + 1] == str[*d] && ++(*d) && ++(*d))
 			while (str[*d] == c)
 				(*d)++;
-		while ((str[*d] == 39 || str[*d] == 34) && data->quote == '\0'
-			&& str[*d] != '\0')
-		{
-			if (data->quote == '\0' || str[*d] == data->quote)
-			{
-				data->flag = !data->flag;
-				data->quote = str[*d];
-			}
-			(*d)++;
-			while (!data->flag && str[*d] == c)
-				(*d)++;
-		}
+		handle_quotes(data, str, d, c);
 		while ((data->flag || str[*d] != c) && str[*d] != data->quote
 			&& str[*d] != '\0' && ++(*d) && ++(data->size))
 		{
