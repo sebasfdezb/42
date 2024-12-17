@@ -6,16 +6,34 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 17:24:14 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/16 17:28:30 by sebferna         ###   ########.fr       */
+/*   Updated: 2024/12/17 16:56:51 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-void	counts(t_data *data, char const *str, char c, int *j)
+void	counts(t_data *data, char const **str, char c, int *j)
 {
-	if (*str != '\0' && *str != data->quote && *str != c)
+	while ((**str == c || **str == '\'' || **str == '\"')
+		&& **str != data->quote
+		&& **str != '\0')
+	{
+		if (data->flag == 0 && (**str == '\'' || **str == '\"'))
+		{
+			data->flag = !data->flag;
+			data->quote = **str;
+		}
+		if (++(*str) && **str != '\0' && **str == data->quote)
+			break ;
+	}
+	if (**str != '\0' && **str != data->quote && **str != c)
 		(*j)++;
+	if (data->flag)
+	{
+		while (**str != data->quote && **str != '\0')
+			(*str)++;
+		data->flag = !data->flag;
+	}
 }
 
 int	count_words(t_data *data, char const *str, char c, int j)
@@ -23,24 +41,7 @@ int	count_words(t_data *data, char const *str, char c, int j)
 	while (*str != '\0')
 	{
 		data->quote = '\0';
-		while ((*str == c || *str == 39 || *str == 34) && *str != data->quote
-			&& *str != '\0')
-		{
-			if (data->flag == 0 && (*str == '\'' || *str == '\"'))
-			{
-				data->flag = !data->flag;
-				data->quote = *str;
-			}
-			if (++str && *str != '\0' && *str == data->quote)
-				break ;
-		}
-		counts(data, str, c, &j);
-		if (data->flag)
-		{
-			while (*str != data->quote && *str != '\0')
-				str++;
-			data->flag = !data->flag;
-		}
+		counts(data, &str, c, &j);
 		while (*str != c && *str != '\0' && *(str)++)
 			if (*str == '\'' || *str == '\"')
 				break ;
