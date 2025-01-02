@@ -6,7 +6,7 @@
 /*   By: sebferna <sebferna@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 19:16:51 by sebferna          #+#    #+#             */
-/*   Updated: 2024/12/17 16:28:22 by sebferna         ###   ########.fr       */
+/*   Updated: 2025/01/02 10:45:55 by sebferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	exp_cmp(const char *s1, const char *s2)
 	{
 		if (s1[i] > s2[i])
 			return (1);
-		else if (s2[i] > s1[i])
+		else if (s1[i] < s2[i])
 			return (-1);
 		else
 			i++;
